@@ -81,11 +81,11 @@ namespace AgroPack.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Mot de passe")]
         public string password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirmez votre mot de passe")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -93,6 +93,11 @@ namespace AgroPack.Models
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Téléphone mobile")]
         public string tel { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
+        [Display(Name = "Type de compte")]
+        public string type { get; set; }
+
 
     }
 

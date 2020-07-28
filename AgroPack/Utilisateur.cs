@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace AgroPack
 {
     using System;
@@ -41,5 +43,12 @@ namespace AgroPack
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }
         public virtual Agriculteur Agriculteur { get; set; }
+    }
+
+    
+    public enum typeCompte
+    {
+        Client,
+        Agriculteur
     }
 }
