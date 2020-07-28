@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="436ecd31331c4cde9e24223e2f657e09" Name="Diagram1" DisplayType="true" ZoomLevel="92">
+        <EntityTypeShape EntityType="AgroPackModel.Agriculteur" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Champ" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Client" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Commande" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.DetailsCmd" Width="1.5" PointX="9.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Entreprise" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Panier" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Produit" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgroPackModel.Utilisateur" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="AgroPackModel.FK_Agriculteur_Utilisateurs" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Commandes_Agriculteurs" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_champs_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Produits_Champs" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Client_Utilisateurs" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_commande_client" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Commandes_Produits" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_detailsCmd_Commande" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_detailsCmd_Produits" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Panier_Utilisateurs" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Produit_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="AgroPackModel.FK_Agriculteurs_Utilisateurs" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
