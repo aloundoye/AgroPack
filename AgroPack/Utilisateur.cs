@@ -25,7 +25,6 @@ namespace AgroPack
         public int UtilisateurID { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
-        public string pseudo { get; set; }
         public string type { get; set; }
         public string email { get; set; }
         public string password { get; set; }

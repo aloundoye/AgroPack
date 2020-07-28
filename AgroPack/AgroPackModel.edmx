@@ -94,9 +94,8 @@
             <PropertyRef Name="UtilisateurID" />
           </Key>
           <Property Name="UtilisateurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="varchar" MaxLength="100" />
-          <Property Name="prenom" Type="varchar" MaxLength="100" />
-          <Property Name="pseudo" Type="varchar" MaxLength="50" />
+          <Property Name="nom" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="prenom" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
@@ -421,9 +420,8 @@
             <PropertyRef Name="UtilisateurID" />
           </Key>
           <Property Name="UtilisateurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pseudo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -744,7 +742,6 @@
                 <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="prenom" ColumnName="prenom" />
-                <ScalarProperty Name="pseudo" ColumnName="pseudo" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
