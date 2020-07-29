@@ -162,6 +162,16 @@ namespace AgroPack.Controllers
                 else
                 {
                     db.Utilisateurs.Add(user);
+                    if (user.type=="Client")
+                    {
+                        Client client = new Client{id = user.UtilisateurID};
+                        db.Clients.Add(client);
+                    }
+                    else if(user.type=="Agriculteur")
+                    {
+                        Agriculteur agriculteur = new Agriculteur{id = user.UtilisateurID};
+                        db.Agriculteurs.Add(agriculteur);
+                    }
                     await db.SaveChangesAsync();
                     ViewBag.SuccessMsg = "User Added!";
                 }
