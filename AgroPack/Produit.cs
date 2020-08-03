@@ -27,9 +27,9 @@ namespace AgroPack
         public Nullable<int> quantite { get; set; }
         public Nullable<decimal> prix { get; set; }
         public int refChamps { get; set; }
-        public string categorieId { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+        public Nullable<int> categorieId { get; set; }
     
         public virtual Champ Champ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +37,6 @@ namespace AgroPack
         public virtual Utilisateur Utilisateur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Panier> Paniers { get; set; }
+        public virtual Categorie Categorie { get; set; }
     }
 }

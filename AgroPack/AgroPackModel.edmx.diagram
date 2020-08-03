@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="436ecd31331c4cde9e24223e2f657e09" Name="Diagram1" DisplayType="true" ZoomLevel="92">
+      <Diagram DiagramId="436ecd31331c4cde9e24223e2f657e09" Name="Diagram1" DisplayType="true" ZoomLevel="101">
         <EntityTypeShape EntityType="AgroPackModel.Agriculteur" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AgroPackModel.Champ" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AgroPackModel.Client" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
@@ -28,6 +28,8 @@
         <EntityTypeShape EntityType="AgroPackModel.Role" Width="1.5" PointX="7.375" PointY="7.75" />
         <AssociationConnector Association="AgroPackModel.FK_Panier_Produits" />
         <AssociationConnector Association="AgroPackModel.FK_Utilisateurs_Roles" />
+        <EntityTypeShape EntityType="AgroPackModel.Categorie" Width="1.5" PointX="3" PointY="12.875" />
+        <AssociationConnector Association="AgroPackModel.FK_Produits_Categorie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

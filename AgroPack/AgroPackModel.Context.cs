@@ -36,5 +36,6 @@ namespace AgroPack
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Categorie> Categories { get; set; }
     }
 }

@@ -44,4 +44,10 @@ namespace AgroPack
         public virtual Agriculteur Agriculteur { get; set; }
         public virtual Role Role { get; set; }
     }
+
+    public enum typeCompte
+    {
+        Agriculteur,
+        Client
+    }
 }
