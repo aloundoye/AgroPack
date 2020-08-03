@@ -17,10 +17,11 @@ namespace AgroPack
         public int id { get; set; }
         public int quantiteProduit { get; set; }
         public int idCommande { get; set; }
-        public int idProduit { get; set; }
         public Nullable<decimal> totalPrix { get; set; }
+        public string Adresse { get; set; }
+        public string Ville { get; set; }
+        public string TypePaiement { get; set; }
     
         public virtual Commande Commande { get; set; }
-        public virtual Produit Produit { get; set; }
     }
 }

@@ -37,19 +37,19 @@
           <Property Name="libelle" Type="text" />
           <Property Name="dateCommande" Type="date" Nullable="false" />
           <Property Name="validite" Type="bit" Nullable="false" />
-          <Property Name="status" Type="nchar" MaxLength="10" />
+          <Property Name="statut" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DetailsCmd">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="idCommande" />
-            <PropertyRef Name="idProduit" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="quantiteProduit" Type="int" Nullable="false" />
           <Property Name="idCommande" Type="int" Nullable="false" />
-          <Property Name="idProduit" Type="int" Nullable="false" />
           <Property Name="totalPrix" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Adresse" Type="varchar" MaxLength="500" />
+          <Property Name="Ville" Type="varchar" MaxLength="500" />
+          <Property Name="TypePaiement" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Entreprises">
           <Key>
@@ -66,6 +66,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idClient" Type="int" />
+          <Property Name="idProduit" Type="int" />
+          <Property Name="Statut" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Produits">
           <Key>
@@ -74,10 +76,19 @@
           <Property Name="ref" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="prop_id" Type="int" />
           <Property Name="nom" Type="varchar" MaxLength="100" />
-          <Property Name="categorie" Type="varchar" MaxLength="100" />
+          <Property Name="categorieId" Type="varchar" MaxLength="100" />
           <Property Name="quantite" Type="int" />
           <Property Name="prix" Type="numeric" Precision="18" Scale="2" />
           <Property Name="refChamps" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Image" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -103,6 +114,7 @@
           <Property Name="tel" Type="int" />
           <Property Name="adresse" Type="varchar" MaxLength="100" />
           <Property Name="dateDeNaissance" Type="date" />
+          <Property Name="idRole" Type="int" />
         </EntityType>
         <Association Name="FK_Agriculteur_Utilisateurs">
           <End Role="Entreprises" Type="Self.Entreprises" Multiplicity="0..1" />
@@ -188,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detailsCmd_Commande">
+        <Association Name="FK_DetailsCmd_Commandes">
           <End Role="Commandes" Type="Self.Commandes" Multiplicity="1" />
           <End Role="DetailsCmd" Type="Self.DetailsCmd" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,14 +212,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detailsCmd_Produits">
-          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
-          <End Role="DetailsCmd" Type="Self.DetailsCmd" Multiplicity="*" />
+        <Association Name="FK_Panier_Produits">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+          <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
               <PropertyRef Name="ref" />
             </Principal>
-            <Dependent Role="DetailsCmd">
+            <Dependent Role="Panier">
               <PropertyRef Name="idProduit" />
             </Dependent>
           </ReferentialConstraint>
@@ -248,6 +260,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Utilisateurs_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Utilisateurs">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AgroPackModelStoreContainer">
           <EntitySet Name="Agriculteurs" EntityType="Self.Agriculteurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Champs" EntityType="Self.Champs" Schema="dbo" store:Type="Tables" />
@@ -257,6 +281,7 @@
           <EntitySet Name="Entreprises" EntityType="Self.Entreprises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Panier" EntityType="Self.Panier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produits" EntityType="Self.Produits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Agriculteur_Utilisateurs" Association="Self.FK_Agriculteur_Utilisateurs">
@@ -287,13 +312,13 @@
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Commandes" EntitySet="Commandes" />
           </AssociationSet>
-          <AssociationSet Name="FK_detailsCmd_Commande" Association="Self.FK_detailsCmd_Commande">
+          <AssociationSet Name="FK_DetailsCmd_Commandes" Association="Self.FK_DetailsCmd_Commandes">
             <End Role="Commandes" EntitySet="Commandes" />
             <End Role="DetailsCmd" EntitySet="DetailsCmd" />
           </AssociationSet>
-          <AssociationSet Name="FK_detailsCmd_Produits" Association="Self.FK_detailsCmd_Produits">
+          <AssociationSet Name="FK_Panier_Produits" Association="Self.FK_Panier_Produits">
             <End Role="Produits" EntitySet="Produits" />
-            <End Role="DetailsCmd" EntitySet="DetailsCmd" />
+            <End Role="Panier" EntitySet="Panier" />
           </AssociationSet>
           <AssociationSet Name="FK_Panier_Utilisateurs" Association="Self.FK_Panier_Utilisateurs">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
@@ -306,6 +331,10 @@
           <AssociationSet Name="FK_Produits_Champs" Association="Self.FK_Produits_Champs">
             <End Role="Champs" EntitySet="Champs" />
             <End Role="Produits" EntitySet="Produits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateurs_Roles" Association="Self.FK_Utilisateurs_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Utilisateurs" EntitySet="Utilisateurs" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -355,21 +384,20 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_commande_client" FromRole="Commandes" ToRole="Clients" />
           <NavigationProperty Name="Produit" Relationship="Self.FK_Commandes_Produits" FromRole="Commandes" ToRole="Produits" />
           <NavigationProperty Name="DetailsCmds" Relationship="Self.FK_detailsCmd_Commande" FromRole="Commandes" ToRole="DetailsCmd" />
-          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="statut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DetailsCmd">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="idCommande" />
-            <PropertyRef Name="idProduit" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="quantiteProduit" Type="Int32" Nullable="false" />
           <Property Name="idCommande" Type="Int32" Nullable="false" />
-          <Property Name="idProduit" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Commande" Relationship="Self.FK_detailsCmd_Commande" FromRole="DetailsCmd" ToRole="Commandes" />
-          <NavigationProperty Name="Produit" Relationship="Self.FK_detailsCmd_Produits" FromRole="DetailsCmd" ToRole="Produits" />
           <Property Name="totalPrix" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Adresse" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Ville" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TypePaiement" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Entreprise">
           <Key>
@@ -388,6 +416,9 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idClient" Type="Int32" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Panier_Utilisateurs" FromRole="Panier" ToRole="Utilisateurs" />
+          <Property Name="idProduit" Type="Int32" />
+          <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Produit" Relationship="AgroPackModel.FK_Panier_Produits" FromRole="Panier" ToRole="Produit" />
         </EntityType>
         <EntityType Name="Produit">
           <Key>
@@ -396,14 +427,16 @@
           <Property Name="ref" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="prop_id" Type="Int32" />
           <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="categorie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="quantite" Type="Int32" />
           <Property Name="prix" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="refChamps" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Champ" Relationship="Self.FK_Produits_Champs" FromRole="Produits" ToRole="Champs" />
           <NavigationProperty Name="Commandes" Relationship="Self.FK_Commandes_Produits" FromRole="Produits" ToRole="Commandes" />
-          <NavigationProperty Name="DetailsCmds" Relationship="Self.FK_detailsCmd_Produits" FromRole="Produits" ToRole="DetailsCmd" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Produit_Utilisateur" FromRole="Produits" ToRole="Utilisateurs" />
+          <Property Name="categorieId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Paniers" Relationship="AgroPackModel.FK_Panier_Produits" FromRole="Produit" ToRole="Panier" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -434,6 +467,8 @@
           <NavigationProperty Name="Paniers" Relationship="Self.FK_Panier_Utilisateurs" FromRole="Utilisateurs" ToRole="Panier" />
           <NavigationProperty Name="Produits" Relationship="Self.FK_Produit_Utilisateur" FromRole="Utilisateurs" ToRole="Produits" />
           <NavigationProperty Name="Agriculteur" Relationship="AgroPackModel.FK_Agriculteurs_Utilisateurs" FromRole="Utilisateur" ToRole="Agriculteur" />
+          <Property Name="idRole" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="AgroPackModel.FK_Utilisateurs_Roles" FromRole="Utilisateur" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Agriculteur_Utilisateurs">
           <End Role="Entreprises" Type="AgroPackModel.Entreprise" Multiplicity="0..1" />
@@ -531,18 +566,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detailsCmd_Produits">
-          <End Role="Produits" Type="Self.Produit" Multiplicity="1" />
-          <End Role="DetailsCmd" Type="Self.DetailsCmd" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Produits">
-              <PropertyRef Name="ref" />
-            </Principal>
-            <Dependent Role="DetailsCmd">
-              <PropertyRef Name="idProduit" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Panier_Utilisateurs">
           <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="0..1" />
           <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
@@ -610,10 +633,6 @@
             <End Role="Commandes" EntitySet="Commandes" />
             <End Role="DetailsCmd" EntitySet="DetailsCmds" />
           </AssociationSet>
-          <AssociationSet Name="FK_detailsCmd_Produits" Association="Self.FK_detailsCmd_Produits">
-            <End Role="Produits" EntitySet="Produits" />
-            <End Role="DetailsCmd" EntitySet="DetailsCmds" />
-          </AssociationSet>
           <AssociationSet Name="FK_Panier_Utilisateurs" Association="Self.FK_Panier_Utilisateurs">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Panier" EntitySet="Paniers" />
@@ -626,6 +645,15 @@
             <End Role="Utilisateur" EntitySet="Utilisateurs" />
             <End Role="Agriculteur" EntitySet="Agriculteurs" />
           </AssociationSet>
+          <EntitySet Name="Roles" EntityType="AgroPackModel.Role" />
+          <AssociationSet Name="FK_Panier_Produits" Association="AgroPackModel.FK_Panier_Produits">
+            <End Role="Produit" EntitySet="Produits" />
+            <End Role="Panier" EntitySet="Paniers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateurs_Roles" Association="AgroPackModel.FK_Utilisateurs_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Agriculteurs_Utilisateurs">
           <End Type="AgroPackModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
@@ -636,6 +664,38 @@
             </Principal>
             <Dependent Role="Agriculteur">
               <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Utilisateurs" Relationship="AgroPackModel.FK_Utilisateurs_Roles" FromRole="Role" ToRole="Utilisateur" />
+        </EntityType>
+        <Association Name="FK_Panier_Produits">
+          <End Type="AgroPackModel.Produit" Role="Produit" Multiplicity="0..1" />
+          <End Type="AgroPackModel.Panier" Role="Panier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produit">
+              <PropertyRef Name="ref" />
+            </Principal>
+            <Dependent Role="Panier">
+              <PropertyRef Name="idProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateurs_Roles">
+          <End Type="AgroPackModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="AgroPackModel.Utilisateur" Role="Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="idRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -672,7 +732,7 @@
           <EntitySetMapping Name="Commandes">
             <EntityTypeMapping TypeName="AgroPackModel.Commande">
               <MappingFragment StoreEntitySet="Commandes">
-                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
                 <ScalarProperty Name="ref" ColumnName="ref" />
                 <ScalarProperty Name="client_id" ColumnName="client_id" />
                 <ScalarProperty Name="prop_id" ColumnName="prop_id" />
@@ -686,11 +746,13 @@
           <EntitySetMapping Name="DetailsCmds">
             <EntityTypeMapping TypeName="AgroPackModel.DetailsCmd">
               <MappingFragment StoreEntitySet="DetailsCmd">
+                <ScalarProperty Name="TypePaiement" ColumnName="TypePaiement" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
                 <ScalarProperty Name="totalPrix" ColumnName="totalPrix" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="quantiteProduit" ColumnName="quantiteProduit" />
                 <ScalarProperty Name="idCommande" ColumnName="idCommande" />
-                <ScalarProperty Name="idProduit" ColumnName="idProduit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -707,6 +769,8 @@
           <EntitySetMapping Name="Paniers">
             <EntityTypeMapping TypeName="AgroPackModel.Panier">
               <MappingFragment StoreEntitySet="Panier">
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="idProduit" ColumnName="idProduit" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idClient" ColumnName="idClient" />
               </MappingFragment>
@@ -715,10 +779,12 @@
           <EntitySetMapping Name="Produits">
             <EntityTypeMapping TypeName="AgroPackModel.Produit">
               <MappingFragment StoreEntitySet="Produits">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
                 <ScalarProperty Name="ref" ColumnName="ref" />
                 <ScalarProperty Name="prop_id" ColumnName="prop_id" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="categorie" ColumnName="categorie" />
                 <ScalarProperty Name="quantite" ColumnName="quantite" />
                 <ScalarProperty Name="prix" ColumnName="prix" />
                 <ScalarProperty Name="refChamps" ColumnName="refChamps" />
@@ -739,6 +805,7 @@
           <EntitySetMapping Name="Utilisateurs">
             <EntityTypeMapping TypeName="AgroPackModel.Utilisateur">
               <MappingFragment StoreEntitySet="Utilisateurs">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
                 <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="prenom" ColumnName="prenom" />
@@ -749,6 +816,14 @@
                 <ScalarProperty Name="tel" ColumnName="tel" />
                 <ScalarProperty Name="adresse" ColumnName="adresse" />
                 <ScalarProperty Name="dateDeNaissance" ColumnName="dateDeNaissance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="AgroPackModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

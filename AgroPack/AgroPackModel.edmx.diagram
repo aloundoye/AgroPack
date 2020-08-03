@@ -22,10 +22,12 @@
         <AssociationConnector Association="AgroPackModel.FK_commande_client" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Commandes_Produits" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_detailsCmd_Commande" ManuallyRouted="false" />
-        <AssociationConnector Association="AgroPackModel.FK_detailsCmd_Produits" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Panier_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Produit_Utilisateur" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Agriculteurs_Utilisateurs" />
+        <EntityTypeShape EntityType="AgroPackModel.Role" Width="1.5" PointX="7.375" PointY="7.75" />
+        <AssociationConnector Association="AgroPackModel.FK_Panier_Produits" />
+        <AssociationConnector Association="AgroPackModel.FK_Utilisateurs_Roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

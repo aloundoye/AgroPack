@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace AgroPack
 {
     using System;
@@ -34,6 +32,7 @@ namespace AgroPack
         public Nullable<int> tel { get; set; }
         public string adresse { get; set; }
         public Nullable<System.DateTime> dateDeNaissance { get; set; }
+        public Nullable<int> idRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Champ> Champs { get; set; }
@@ -43,12 +42,6 @@ namespace AgroPack
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }
         public virtual Agriculteur Agriculteur { get; set; }
-    }
-
-    
-    public enum typeCompte
-    {
-        Client,
-        Agriculteur
+        public virtual Role Role { get; set; }
     }
 }

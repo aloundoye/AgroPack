@@ -12,27 +12,18 @@ namespace AgroPack
     using System;
     using System.Collections.Generic;
     
-    public partial class Commande
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Commande()
+        public Role()
         {
-            this.DetailsCmds = new HashSet<DetailsCmd>();
+            this.Utilisateurs = new HashSet<Utilisateur>();
         }
     
-        public int @ref { get; set; }
-        public int client_id { get; set; }
-        public int prop_id { get; set; }
-        public int prod_ref { get; set; }
-        public string libelle { get; set; }
-        public System.DateTime dateCommande { get; set; }
-        public bool validite { get; set; }
-        public string statut { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual Agriculteur Agriculteur { get; set; }
-        public virtual Client Client { get; set; }
-        public virtual Produit Produit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailsCmd> DetailsCmds { get; set; }
+        public virtual ICollection<Utilisateur> Utilisateurs { get; set; }
     }
 }
