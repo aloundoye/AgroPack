@@ -11,60 +11,60 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.prenom, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.prenom, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.nom, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.nom, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.password, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.tel, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.tel, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         @Html.LabelFor(m => m.type, new { @class = "col-md-2 control-label" })
 
         <div class="col-md-10">
             @Html.DropDownListFor(m => m.type, new SelectList(Enum.GetValues(typeof(typeCompte))), "Type de compte", new {@class = "form-control"})
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+    <div class="form-group row">
+        <div class="col-md-offset-2 col-md-10 ml-auto mt-2">
+            <input type="submit" class="btn btn-primary" value="CREER VOTRE COMPTE" />
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <div class="col-md-offset-2 col-md-10 text-success">
             @ViewBag.SuccessMsg
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <div class="col-md-offset-2 col-md-10 text-danger">
             @ViewBag.ErrMsg
         </div>
