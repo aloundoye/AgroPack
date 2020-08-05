@@ -4,10 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - AgroPack</title>
+    <!-- Custom fonts for this template-->
+    <link href="~/AdminStyles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/AdminStyles/css/sb-admin-2.min.css" rel="stylesheet">
+
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min1.css" rel="stylesheet" />
 </head>
-<body class="bg-light">
+<body class="bg-gray-200">
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white mt-0">
     <div class="container">
 
@@ -18,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             @Html.ActionLink("AgroPack", "Index", "Home", "", new { @class = "navbar-brand" })
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
+                @*<li class="nav-item active">
                     @Html.ActionLink("Page d'accueil", "Index", "Home", "", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
@@ -26,9 +33,21 @@
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Contacts", "Contact", "Home", "", new { @class = "nav-link" })
-                </li>
-
+                </li>*@
+                
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search col-lg-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small " placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+               
             </ul>
+            
 
             @Html.Partial("_LoginPartial")
         </div>
@@ -39,7 +58,7 @@
 
 <div class="container mt-3">
     @RenderBody()
-    <hr />
+    <hr class="bg-dark"/>
     <footer>
         <p>&copy; @DateTime.Now.Year - AgroPack</p>
     </footer>

@@ -2,21 +2,32 @@
 @if (Session["UserId"] == null)
 {
     <ul class="navbar-nav ml-auto">
-        <form class="form-inline my-2 my-lg-0">
+        @*<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link"})</li>
+        </form>*@
+        
+        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link ml-3"})</li>
         <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
     </ul>
 }
 else
 {
     <ul class="navbar-nav ml-auto">
-        <form class="form-inline my-2 my-lg-0">
+        @*<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
+        </form>*@
+        @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>*@
+        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link ml-3"})</li>
     </ul>
 }
