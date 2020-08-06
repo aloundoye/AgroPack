@@ -32,6 +32,12 @@ namespace AgroPack.Repository
             return _dbSet.Count();
         }
 
+        public IEnumerable<Tbl_Entity> GetProduct()
+        {
+            return _dbSet.ToList();
+        }
+
+
         public void Add(Tbl_Entity entity)
         {
             _dbSet.Add(entity);

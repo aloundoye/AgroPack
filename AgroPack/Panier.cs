@@ -19,7 +19,7 @@ namespace AgroPack
         public Nullable<int> idProduit { get; set; }
         public string Statut { get; set; }
     
-        public virtual Utilisateur Utilisateur { get; set; }
         public virtual Produit Produit { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
     }
 }

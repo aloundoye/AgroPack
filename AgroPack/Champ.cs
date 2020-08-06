@@ -21,7 +21,7 @@ namespace AgroPack
         }
     
         public int prop_id { get; set; }
-        public int @ref { get; set; }
+        public int Id { get; set; }
         public string nom { get; set; }
     
         public virtual Utilisateur Utilisateur { get; set; }

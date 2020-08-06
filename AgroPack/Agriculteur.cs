@@ -23,9 +23,9 @@ namespace AgroPack
         public int id { get; set; }
         public Nullable<int> idEntreprise { get; set; }
     
-        public virtual Entreprise Entrepris { get; set; }
+        public virtual Entreprise Entreprise { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Commande> Commandes { get; set; }
-        public virtual Utilisateur Utilisateur { get; set; }
     }
 }

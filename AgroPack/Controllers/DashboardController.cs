@@ -44,5 +44,17 @@ namespace AgroPack.Controllers
 
         }
 
+        public ActionResult Product()
+        {
+            return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetProduct());
+        }
+        public ActionResult Champs()
+        {
+            return View();
+        }
+        public ActionResult Order()
+        {
+            return View();
+        }
     }
 }

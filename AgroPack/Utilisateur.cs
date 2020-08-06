@@ -34,6 +34,7 @@ namespace AgroPack
         public Nullable<System.DateTime> dateDeNaissance { get; set; }
         public Nullable<int> idRole { get; set; }
     
+        public virtual Agriculteur Agriculteur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Champ> Champs { get; set; }
         public virtual Client Client { get; set; }
@@ -41,13 +42,6 @@ namespace AgroPack
         public virtual ICollection<Panier> Paniers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }
-        public virtual Agriculteur Agriculteur { get; set; }
         public virtual Role Role { get; set; }
-    }
-
-    public enum typeCompte
-    {
-        Agriculteur,
-        Client
     }
 }

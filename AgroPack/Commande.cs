@@ -20,10 +20,10 @@ namespace AgroPack
             this.DetailsCmds = new HashSet<DetailsCmd>();
         }
     
-        public int @ref { get; set; }
+        public int Id { get; set; }
         public int client_id { get; set; }
         public int prop_id { get; set; }
-        public int prod_ref { get; set; }
+        public int prod_id { get; set; }
         public string libelle { get; set; }
         public System.DateTime dateCommande { get; set; }
         public bool validite { get; set; }

@@ -204,15 +204,15 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Models\Detailcategorie.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DetailsCmd.cs">
       <DependentUpon>AgroPackModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entreprise.cs">
       <DependentUpon>AgroPackModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Detailcategorie.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1922,13 +1922,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <EntityDeploy Include="AgroPackModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgroPackModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="AgroPackModel.edmx.diagram">
-      <DependentUpon>AgroPackModel.edmx</DependentUpon>
-    </Content>
     <Content Include="AdminStyles\scss\navs\_global.scss" />
     <Content Include="AdminStyles\scss\navs\_sidebar.scss" />
     <Content Include="AdminStyles\scss\navs\_topbar.scss" />
@@ -2101,6 +2094,13 @@
     <Content Include="AdminStyles\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="AdminStyles\vendor\jquery\jquery.min.map" />
     <Content Include="AdminStyles\vendor\jquery\jquery.slim.min.map" />
+    <EntityDeploy Include="AgroPackModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AgroPackModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="AgroPackModel.edmx.diagram">
+      <DependentUpon>AgroPackModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\bootstrap.min1.js" />
     <Content Include="Scripts\jquery-3.5.1.min1.js" />
@@ -2147,6 +2147,8 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\Categories.cshtml" />
     <Content Include="Views\Dashboard\UpdateCategory.cshtml" />
+    <Content Include="Views\Dashboard\Champs.cshtml" />
+    <Content Include="Views\Dashboard\Order.cshtml" />
     <Content Include="Views\Dashboard\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>

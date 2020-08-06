@@ -21,22 +21,22 @@ namespace AgroPack
             this.Paniers = new HashSet<Panier>();
         }
     
-        public int @ref { get; set; }
+        public int Id { get; set; }
         public Nullable<int> prop_id { get; set; }
         public string nom { get; set; }
         public Nullable<int> quantite { get; set; }
         public Nullable<decimal> prix { get; set; }
-        public int refChamps { get; set; }
+        public int idChamps { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
         public Nullable<int> categorieId { get; set; }
     
+        public virtual Categorie Categorie { get; set; }
         public virtual Champ Champ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Commande> Commandes { get; set; }
-        public virtual Utilisateur Utilisateur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Panier> Paniers { get; set; }
-        public virtual Categorie Categorie { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
     }
 }

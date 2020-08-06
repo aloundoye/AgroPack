@@ -1,9 +1,46 @@
-﻿
+﻿@model IEnumerable<AgroPack.Produit>
+
 @{
     ViewBag.ActiveProduit = "active";
     ViewBag.Title = "Produits";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Product</h2>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="../Dashboard/AddCategory" class=" m-0 btn btn-info fa-pull-right"><i class="fas fa-plus"></i> Ajouter une nouvelle produit</a>
+        <h6 class="m-0 font-weight-bold text-primary">Détails Produits</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nom</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>No.</th>
+                    <th>Nom</th>
+                    <th>Action</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.nom</td>
+                        <td><a href="#">Modifier</a></td>
+       
+                    </tr>
+                }
 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
