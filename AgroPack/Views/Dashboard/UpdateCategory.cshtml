@@ -1,0 +1,28 @@
+﻿
+@model AgroPack.Controllers.Detailcategorie
+@{
+    ViewBag.ActiveCategorie = "active";
+    ViewBag.Title = "Catégories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Ajouter une nouvelle catégorie</h6>
+</div>
+    <div class="card-body">
+        @using (Html.BeginForm("UpdateCategory", "Dashboard", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+
+        
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            <label class="control-label">Nom Catégorie</label>
+            @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Entrez le nom de la catégorie", required = "required", autofocus = "autofocus"})
+            @Html.ValidationMessageFor(m => m.Name, "", new {@class = "text-danger"})
+        </div>
+        <a href="./Categories" class="btn btn-danger">Annuler</a>
+            <input type="submit" class="btn btn-primary" value="Enregistrer"/>
+                                                                            }
+    </div>
+</div>

@@ -2146,6 +2146,8 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\Categories.cshtml" />
+    <Content Include="Views\Dashboard\UpdateCategory.cshtml" />
+    <Content Include="Views\Dashboard\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

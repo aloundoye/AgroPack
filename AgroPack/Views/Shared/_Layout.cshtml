@@ -23,18 +23,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <i class="fas fa-store"></i>
             @Html.ActionLink("AgroPack", "Index", "Home", "", new { @class = "navbar-brand" })
+
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 @*<li class="nav-item active">
-                    @Html.ActionLink("Page d'accueil", "Index", "Home", "", new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("A propos", "About", "Home", "", new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Contacts", "Contact", "Home", "", new { @class = "nav-link" })
-                </li>*@
-                
+                @Html.ActionLink("Page d'accueil", "Index", "Home", "", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("A propos", "About", "Home", "", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Contacts", "Contact", "Home", "", new { @class = "nav-link" })
+            </li>*@
+
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search col-lg-12">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small " placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon2">
@@ -45,9 +47,9 @@
                         </div>
                     </div>
                 </form>
-               
+
             </ul>
-            
+
 
             @Html.Partial("_LoginPartial")
         </div>
