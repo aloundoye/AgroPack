@@ -17,7 +17,7 @@ namespace AgroPack.Controllers
 
     public class DetailProduit
     {
-        public int @ref { get; set; }
+        public int Id { get; set; }
         public Nullable<int> prop_id { get; set; }
         [Required(ErrorMessage = "Product Name is Required")]
         [StringLength(100, ErrorMessage = "Minimum 3 and minimum 5 and maximum 100 charaters are allwed", MinimumLength = 3)]

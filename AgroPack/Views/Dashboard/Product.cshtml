@@ -34,7 +34,9 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.nom</td>
-                        <td><a href="#">Modifier</a></td>
+                        <td>
+                            @Html.ActionLink("Modifier", "ProductEdit", new {productId = item.Id})
+                        </td>
        
                     </tr>
                 }

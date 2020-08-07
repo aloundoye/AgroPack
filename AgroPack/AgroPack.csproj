@@ -220,6 +220,7 @@
     <Compile Include="Models\DetailCommande.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProduitEditViewModel.cs" />
     <Compile Include="Panier.cs">
       <DependentUpon>AgroPackModel.tt</DependentUpon>
     </Compile>
@@ -2150,6 +2151,7 @@
     <Content Include="Views\Dashboard\Champs.cshtml" />
     <Content Include="Views\Dashboard\Order.cshtml" />
     <Content Include="Views\Dashboard\Product.cshtml" />
+    <Content Include="Views\Dashboard\ProductEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AgroPack
 {
     using System;
@@ -27,6 +29,7 @@ namespace AgroPack
         public Nullable<int> quantite { get; set; }
         public Nullable<decimal> prix { get; set; }
         public int idChamps { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public string Image { get; set; }
         public Nullable<int> categorieId { get; set; }
