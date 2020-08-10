@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AgroPackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AgroPackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agriculteurs">
           <Key>
             <PropertyRef Name="id" />
@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Champs">
@@ -89,6 +89,7 @@
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Image" Type="varchar(max)" />
           <Property Name="categorieId" Type="int" />
+          <Property Name="CreatedDate" Type="date" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -343,8 +344,7 @@
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgroPackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -356,14 +356,6 @@
           <Property Name="idEntreprise" Type="Int32" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Agriculteurs_Utilisateurs" FromRole="Agriculteurs" ToRole="Utilisateurs" />
           <NavigationProperty Name="Commandes" Relationship="Self.FK_Commandes_Agriculteurs" FromRole="Agriculteurs" ToRole="Commandes" />
-        </EntityType>
-        <EntityType Name="Categorie">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK_Produits_Categorie" FromRole="Categorie" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Champ">
           <Key>
@@ -446,11 +438,12 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="categorieId" Type="Int32" />
-          <NavigationProperty Name="Categorie" Relationship="Self.FK_Produits_Categorie" FromRole="Produits" ToRole="Categorie" />
           <NavigationProperty Name="Champ" Relationship="Self.FK_Produits_Champs" FromRole="Produits" ToRole="Champs" />
           <NavigationProperty Name="Commandes" Relationship="Self.FK_Commandes_Produits" FromRole="Produits" ToRole="Commandes" />
           <NavigationProperty Name="Paniers" Relationship="Self.FK_Panier_Produits" FromRole="Produits" ToRole="Panier" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Produit_Utilisateur" FromRole="Produits" ToRole="Utilisateurs" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Categorie" Relationship="AgroPackModel.FK_Produits_Categorie" FromRole="Produit" ToRole="Categorie" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -513,18 +506,6 @@
             </Principal>
             <Dependent Role="Commandes">
               <PropertyRef Name="prop_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Produits_Categorie">
-          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
-          <End Role="Produits" Type="Self.Produit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categorie">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Produits">
-              <PropertyRef Name="categorieId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -650,7 +631,6 @@
         </Association>
         <EntityContainer Name="AgroPackDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agriculteurs" EntityType="Self.Agriculteur" />
-          <EntitySet Name="Categories" EntityType="Self.Categorie" />
           <EntitySet Name="Champs" EntityType="Self.Champ" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Commandes" EntityType="Self.Commande" />
@@ -668,10 +648,6 @@
           <AssociationSet Name="FK_Commandes_Agriculteurs" Association="Self.FK_Commandes_Agriculteurs">
             <End Role="Agriculteurs" EntitySet="Agriculteurs" />
             <End Role="Commandes" EntitySet="Commandes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Produits_Categorie" Association="Self.FK_Produits_Categorie">
-            <End Role="Categorie" EntitySet="Categories" />
-            <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
           <AssociationSet Name="FK_champs_Utilisateur" Association="Self.FK_champs_Utilisateur">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
@@ -709,7 +685,32 @@
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="AgroPackModel.Categorie" />
+          <AssociationSet Name="FK_Produits_Categorie" Association="AgroPackModel.FK_Produits_Categorie">
+            <End Role="Categorie" EntitySet="Categories" />
+            <End Role="Produit" EntitySet="Produits" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Produits" Relationship="AgroPackModel.FK_Produits_Categorie" FromRole="Categorie" ToRole="Produit" />
+        </EntityType>
+        <Association Name="FK_Produits_Categorie">
+          <End Type="AgroPackModel.Categorie" Role="Categorie" Multiplicity="0..1" />
+          <End Type="AgroPackModel.Produit" Role="Produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Produit">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -721,14 +722,6 @@
               <MappingFragment StoreEntitySet="Agriculteurs">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idEntreprise" ColumnName="idEntreprise" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="AgroPackModel.Categorie">
-              <MappingFragment StoreEntitySet="Categorie">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -798,6 +791,7 @@
           <EntitySetMapping Name="Produits">
             <EntityTypeMapping TypeName="AgroPackModel.Produit">
               <MappingFragment StoreEntitySet="Produits">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="prop_id" ColumnName="prop_id" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
@@ -843,6 +837,14 @@
                 <ScalarProperty Name="adresse" ColumnName="adresse" />
                 <ScalarProperty Name="dateDeNaissance" ColumnName="dateDeNaissance" />
                 <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AgroPackModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

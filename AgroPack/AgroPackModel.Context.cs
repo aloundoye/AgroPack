@@ -26,7 +26,6 @@ namespace AgroPack
         }
     
         public virtual DbSet<Agriculteur> Agriculteurs { get; set; }
-        public virtual DbSet<Categorie> Categories { get; set; }
         public virtual DbSet<Champ> Champs { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Commande> Commandes { get; set; }
@@ -37,5 +36,6 @@ namespace AgroPack
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
+        public virtual DbSet<Categorie> Categories { get; set; }
     }
 }

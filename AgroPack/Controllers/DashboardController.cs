@@ -71,6 +71,16 @@ namespace AgroPack.Controllers
         [HttpPost]
         public ActionResult CategoryAdd(Categorie categorie)
         {
+
+            //using (AgroPackDbContext db = new AgroPackDbContext())
+            //{
+            //    Categorie cat = (from c in db.Categories select c).OrderByDescending(x => x.Id).FirstOrDefault();
+            //    categorie.Id = cat.Id + 1;
+
+            //}
+
+            //string guid = Guid.NewGuid().ToString();
+
             _UnitOfWork.GetRepositoryInstance<Categorie>().Add(categorie);
             return RedirectToAction("Categories");
 
@@ -96,12 +106,13 @@ namespace AgroPack.Controllers
         {
             ViewBag.CategorieList = GetCategorie();
             ViewBag.ChampsList = GetChamps();
-
+            
             return View();
         }
         [HttpPost]
         public ActionResult ProductAdd(Produit produit)
         {
+            produit.CreatedDate = DateTime.Now;
             _UnitOfWork.GetRepositoryInstance<Produit>().Add(produit);
             return RedirectToAction("Product");
 

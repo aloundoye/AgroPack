@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c7b7cfcdf0154fd8b90220e3df2de609" Name="Diagram1">
         <EntityTypeShape EntityType="AgroPackModel.Agriculteur" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgroPackModel.Categorie" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AgroPackModel.Champ" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AgroPackModel.Client" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AgroPackModel.Commande" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
@@ -19,7 +18,6 @@
         <EntityTypeShape EntityType="AgroPackModel.Utilisateur" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="AgroPackModel.FK_Agriculteurs_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Commandes_Agriculteurs" ManuallyRouted="false" />
-        <AssociationConnector Association="AgroPackModel.FK_Produits_Categorie" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_champs_Utilisateur" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Produits_Champs" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Client_Utilisateurs" ManuallyRouted="false" />
@@ -29,6 +27,8 @@
         <AssociationConnector Association="AgroPackModel.FK_Panier_Produits" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Panier_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="AgroPackModel.FK_Produit_Utilisateur" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AgroPackModel.Categorie" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="AgroPackModel.FK_Produits_Categorie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

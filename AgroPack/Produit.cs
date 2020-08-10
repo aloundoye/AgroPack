@@ -30,13 +30,14 @@ namespace AgroPack
         public string Description { get; set; }
         public string Image { get; set; }
         public Nullable<int> categorieId { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
-        public virtual Categorie Categorie { get; set; }
         public virtual Champ Champ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Commande> Commandes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Panier> Paniers { get; set; }
         public virtual Utilisateur Utilisateur { get; set; }
+        public virtual Categorie Categorie { get; set; }
     }
 }
