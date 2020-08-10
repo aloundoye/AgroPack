@@ -12,6 +12,32 @@ namespace AgroPack.Controllers
     public class DashboardController : Controller
     {
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
+
+        public List<SelectListItem> GetCategorie()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var cat = _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecords();
+                foreach (var item in cat)
+            {
+                list.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Name
+                });
+            }
+            return list;
+        }
+        public List<SelectListItem> GetChamps()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var cat = _UnitOfWork.GetRepositoryInstance<Champ>().GetAllRecords();
+            foreach (var item in cat)
+            {
+                list.Add(new SelectListItem
+                {
+                    Value = item.Id.ToString(),
+                    Text = item.nom
+                });
+            }
+            return list;
+        }
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -56,7 +82,8 @@ namespace AgroPack.Controllers
         }
         public ActionResult ProductEdit( int productId)
         {
-            
+            ViewBag.CategorieList = GetCategorie();
+            ViewBag.ChampsList = GetChamps();
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
         }
         [HttpPost]
@@ -67,6 +94,9 @@ namespace AgroPack.Controllers
         }
         public ActionResult ProductAdd()
         {
+            ViewBag.CategorieList = GetCategorie();
+            ViewBag.ChampsList = GetChamps();
+
             return View();
         }
         [HttpPost]
