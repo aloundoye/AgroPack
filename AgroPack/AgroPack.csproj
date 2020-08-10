@@ -2152,6 +2152,9 @@
     <Content Include="Views\Dashboard\Order.cshtml" />
     <Content Include="Views\Dashboard\Product.cshtml" />
     <Content Include="Views\Dashboard\ProductEdit.cshtml" />
+    <Content Include="Views\Dashboard\CategoriesEdit.cshtml" />
+    <Content Include="Views\Dashboard\ProductAdd.cshtml" />
+    <Content Include="Views\Dashboard\CategoryAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

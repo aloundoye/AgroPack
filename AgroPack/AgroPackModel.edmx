@@ -85,7 +85,7 @@
           <Property Name="nom" Type="varchar" MaxLength="100" />
           <Property Name="quantite" Type="int" />
           <Property Name="prix" Type="numeric" Precision="18" Scale="2" />
-          <Property Name="idChamps" Type="int" Nullable="false" />
+          <Property Name="idChamps" Type="int" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Image" Type="varchar(max)" />
           <Property Name="categorieId" Type="int" />
@@ -123,20 +123,10 @@
           <Property Name="dateDeNaissance" Type="date" />
           <Property Name="idRole" Type="int" />
         </EntityType>
-        <Association Name="FK_Agriculteur_Utilisateurs">
-          <End Role="Entreprises" Type="Self.Entreprises" Multiplicity="0..1" />
-          <End Role="Agriculteurs" Type="Self.Agriculteurs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entreprises">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Agriculteurs">
-              <PropertyRef Name="idEntreprise" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Agriculteurs_Utilisateurs">
-          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Agriculteurs" Type="Self.Agriculteurs" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -148,7 +138,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_champs_Utilisateur">
-          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Champs" Type="Self.Champs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -160,7 +152,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Client_Utilisateurs">
-          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -196,7 +190,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Commandes_Produits">
-          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Commandes" Type="Self.Commandes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -208,7 +204,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DetailsCmd_Commandes">
-          <End Role="Commandes" Type="Self.Commandes" Multiplicity="1" />
+          <End Role="Commandes" Type="Self.Commandes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DetailsCmd" Type="Self.DetailsCmd" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Commandes">
@@ -220,7 +218,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Panier_Produits">
-          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -268,7 +268,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Produits_Champs">
-          <End Role="Champs" Type="Self.Champs" Multiplicity="1" />
+          <End Role="Champs" Type="Self.Champs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Champs">
@@ -276,18 +278,6 @@
             </Principal>
             <Dependent Role="Produits">
               <PropertyRef Name="idChamps" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Utilisateurs_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Utilisateurs">
-              <PropertyRef Name="idRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -304,10 +294,6 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Agriculteur_Utilisateurs" Association="Self.FK_Agriculteur_Utilisateurs">
-            <End Role="Entreprises" EntitySet="Entreprises" />
-            <End Role="Agriculteurs" EntitySet="Agriculteurs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Agriculteurs_Utilisateurs" Association="Self.FK_Agriculteurs_Utilisateurs">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Agriculteurs" EntitySet="Agriculteurs" />
@@ -356,10 +342,6 @@
             <End Role="Champs" EntitySet="Champs" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
-          <AssociationSet Name="FK_Utilisateurs_Roles" Association="Self.FK_Utilisateurs_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Utilisateurs" EntitySet="Utilisateurs" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -372,7 +354,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="idEntreprise" Type="Int32" />
-          <NavigationProperty Name="Entreprise" Relationship="Self.FK_Agriculteur_Utilisateurs" FromRole="Agriculteurs" ToRole="Entreprises" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Agriculteurs_Utilisateurs" FromRole="Agriculteurs" ToRole="Utilisateurs" />
           <NavigationProperty Name="Commandes" Relationship="Self.FK_Commandes_Agriculteurs" FromRole="Agriculteurs" ToRole="Commandes" />
         </EntityType>
@@ -440,7 +421,6 @@
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Agriculteurs" Relationship="Self.FK_Agriculteur_Utilisateurs" FromRole="Entreprises" ToRole="Agriculteurs" />
         </EntityType>
         <EntityType Name="Panier">
           <Key>
@@ -462,7 +442,7 @@
           <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="quantite" Type="Int32" />
           <Property Name="prix" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="idChamps" Type="Int32" Nullable="false" />
+          <Property Name="idChamps" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="categorieId" Type="Int32" />
@@ -478,7 +458,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Utilisateurs" Relationship="Self.FK_Utilisateurs_Roles" FromRole="Roles" ToRole="Utilisateurs" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -510,22 +489,11 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Utilisateurs" FromRole="Utilisateurs" ToRole="Clients" />
           <NavigationProperty Name="Paniers" Relationship="Self.FK_Panier_Utilisateurs" FromRole="Utilisateurs" ToRole="Panier" />
           <NavigationProperty Name="Produits" Relationship="Self.FK_Produit_Utilisateur" FromRole="Utilisateurs" ToRole="Produits" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Utilisateurs_Roles" FromRole="Utilisateurs" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK_Agriculteur_Utilisateurs">
-          <End Role="Entreprises" Type="AgroPackModel.Entreprise" Multiplicity="0..1" />
-          <End Role="Agriculteurs" Type="Self.Agriculteur" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entreprises">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Agriculteurs">
-              <PropertyRef Name="idEntreprise" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Agriculteurs_Utilisateurs">
-          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Agriculteurs" Type="Self.Agriculteur" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -561,7 +529,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_champs_Utilisateur">
-          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Champs" Type="Self.Champ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -573,7 +543,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Produits_Champs">
-          <End Role="Champs" Type="Self.Champ" Multiplicity="1" />
+          <End Role="Champs" Type="Self.Champ" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Produits" Type="Self.Produit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Champs">
@@ -585,7 +557,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Client_Utilisateurs">
-          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Clients" Type="Self.Client" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Utilisateurs">
@@ -609,7 +583,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Commandes_Produits">
-          <End Role="Produits" Type="Self.Produit" Multiplicity="1" />
+          <End Role="Produits" Type="Self.Produit" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Commandes" Type="Self.Commande" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -621,7 +597,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DetailsCmd_Commandes">
-          <End Role="Commandes" Type="Self.Commande" Multiplicity="1" />
+          <End Role="Commandes" Type="Self.Commande" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DetailsCmd" Type="Self.DetailsCmd" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Commandes">
@@ -633,7 +611,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Panier_Produits">
-          <End Role="Produits" Type="Self.Produit" Multiplicity="0..1" />
+          <End Role="Produits" Type="Self.Produit" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -668,18 +648,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Utilisateurs_Roles">
-          <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="Utilisateurs" Type="Self.Utilisateur" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Utilisateurs">
-              <PropertyRef Name="idRole" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="AgroPackDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agriculteurs" EntityType="Self.Agriculteur" />
           <EntitySet Name="Categories" EntityType="Self.Categorie" />
@@ -693,10 +661,6 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
-          <AssociationSet Name="FK_Agriculteur_Utilisateurs" Association="Self.FK_Agriculteur_Utilisateurs">
-            <End Role="Entreprises" EntitySet="Entreprises" />
-            <End Role="Agriculteurs" EntitySet="Agriculteurs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Agriculteurs_Utilisateurs" Association="Self.FK_Agriculteurs_Utilisateurs">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Agriculteurs" EntitySet="Agriculteurs" />
@@ -744,10 +708,6 @@
           <AssociationSet Name="FK_Produit_Utilisateur" Association="Self.FK_Produit_Utilisateur">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Produits" EntitySet="Produits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Utilisateurs_Roles" Association="Self.FK_Utilisateurs_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Utilisateurs" EntitySet="Utilisateurs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

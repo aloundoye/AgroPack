@@ -1,4 +1,4 @@
-﻿@model List<Categorie>
+﻿@model IEnumerable<Categorie>
 @{
     ViewBag.ActiveCategorie = "active";
     ViewBag.Title = "Catégories";
@@ -7,7 +7,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="../Dashboard/AddCategory" class=" m-0 btn btn-info fa-pull-right"><i class="fas fa-plus"></i> Ajouter une nouvelle catégorie</a>
+        <a href="~/Dashboard/CategoryAdd" class=" m-0 btn btn-info fa-pull-right"><i class="fas fa-plus"></i> Ajouter une nouvelle catégorie</a>
         <h6 class="m-0 font-weight-bold text-primary">Détails Catégorie</h6>
     </div>
 <div class="card-body">
@@ -33,7 +33,9 @@
     <tr>
         <td>@item.Id</td>
         <td>@item.Name</td>
-        <td><a href="#">Modifier</a></td>
+        <td>                            
+            @Html.ActionLink("Modifier", "CategoriesEdit", new {categoryId = item.Id})
+        </td>
        
     </tr>
 }

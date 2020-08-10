@@ -28,6 +28,7 @@ else
                 </div>
             </div>
         </form>*@
+        <li>@Html.ActionLink("Votre compte", "Index", "Dashboard", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link ml-3"})</li>
         <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link ml-3"})</li>
     </ul>
 }

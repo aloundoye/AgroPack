@@ -25,23 +25,28 @@ namespace AgroPack.Controllers
             return View(allCategories);
         }
 
-        public ActionResult AddCategory()
+        public ActionResult CategoriesEdit(int categoryId)
         {
-            return UpdateCategory(0);
+
+            return View(_UnitOfWork.GetRepositoryInstance<Categorie>().GetFirstorDefault(categoryId));
+        }
+        [HttpPost]
+        public ActionResult CategoriesEdit(Categorie categorie)
+        {
+            _UnitOfWork.GetRepositoryInstance<Categorie>().Update(categorie);
+            return RedirectToAction("Categories");
         }
 
-        public ActionResult UpdateCategory(int categoryId)
+        public ActionResult CategoryAdd()
         {
-            Detailcategorie cd;
-            if (categoryId != null)
-            {
-                cd = JsonConvert.DeserializeObject<Detailcategorie>(JsonConvert.SerializeObject(_UnitOfWork.GetRepositoryInstance<Categorie>().GetFirstorDefault(categoryId)));
-            }
-            else
-            {
-                cd = new Detailcategorie();
-            }
-            return View("UpdateCategory", cd);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CategoryAdd(Categorie categorie)
+        {
+            _UnitOfWork.GetRepositoryInstance<Categorie>().Add(categorie);
+            return RedirectToAction("Categories");
 
         }
 
@@ -51,19 +56,25 @@ namespace AgroPack.Controllers
         }
         public ActionResult ProductEdit( int productId)
         {
-            var product = _UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId);
-            var champs = _UnitOfWork.GetRepositoryInstance<Champ>().GetAllRecordsIQueryable().ToList();
-            var utilisateurs = _UnitOfWork.GetRepositoryInstance<Utilisateur>().GetAllRecordsIQueryable().ToList();
-            var categories = _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecordsIQueryable().ToList();
+            
+            return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
+        }
+        [HttpPost]
+        public ActionResult ProductEdit(Produit product)
+        {
+            _UnitOfWork.GetRepositoryInstance<Produit>().Update(product);
+            return RedirectToAction("Product");
+        }
+        public ActionResult ProductAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProductAdd(Produit produit)
+        {
+            _UnitOfWork.GetRepositoryInstance<Produit>().Add(produit);
+            return RedirectToAction("Product");
 
-            var viewModel = new ProduitEditViewModel
-            {
-                Produit = product,
-                Champs = champs,
-                Utilisateurs = utilisateurs,
-                Categories = categories
-            };
-            return View(viewModel);
         }
         public ActionResult Champs()
         {
