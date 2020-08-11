@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetailCommande.cs" />
+    <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProduitEditViewModel.cs" />
@@ -2103,6 +2104,9 @@
       <DependentUpon>AgroPackModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Images\Caroussel\carousel1.jpg" />
+    <Content Include="Images\Caroussel\carousel2.png" />
+    <Content Include="Images\Caroussel\carousel3.jpg" />
     <Content Include="Scripts\bootstrap.min1.js" />
     <Content Include="Scripts\jquery-3.5.1.min1.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -2155,9 +2159,11 @@
     <Content Include="Views\Dashboard\CategoriesEdit.cshtml" />
     <Content Include="Views\Dashboard\ProductAdd.cshtml" />
     <Content Include="Views\Dashboard\CategoryAdd.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Produits\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
