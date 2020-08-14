@@ -1,14 +1,23 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Session["UserId"] == null)
 {
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav mt-2 mt-lg-0">
         @*<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>*@
         
-        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link ml-3"})</li>
+        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link"})</li>
         <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
+        <li>
+            <a href="#" class="nav-link">
+                <div class="d-inline-block mr-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)" >1</span>
+                </div>
+                Panier
+            </a>
+        </li>
     </ul>
 }
 else
@@ -28,7 +37,16 @@ else
                 </div>
             </div>
         </form>*@
-        <li>@Html.ActionLink("Votre compte", "Index", "Dashboard", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link ml-3"})</li>
-        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link ml-3"})</li>
+        <li>@Html.ActionLink("Votre compte", "Index", "Dashboard", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
+        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
+        <li>
+            <a href="#" class="nav-link">
+                <div class="d-inline-block mr-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)" >1</span>
+                </div>
+                Panier
+            </a>
+        </li>
     </ul>
 }
