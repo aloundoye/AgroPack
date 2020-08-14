@@ -12,10 +12,10 @@ namespace AgroPack.Controllers
     {
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
 
-        public ActionResult Index()
+        public ActionResult Index( string search, int? page)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
-            return View(model.CreateModel());
+            return View(model.CreateModel(search));
         }
 
         public ActionResult About()

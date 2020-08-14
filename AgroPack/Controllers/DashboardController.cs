@@ -97,9 +97,21 @@ namespace AgroPack.Controllers
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
         }
         [HttpPost]
-        public ActionResult ProductEdit(Produit product)
+        public ActionResult ProductEdit(Produit produit, HttpPostedFileBase file)
         {
-            _UnitOfWork.GetRepositoryInstance<Produit>().Update(product);
+            string pic = null;
+            if (file != null)
+            {
+                string[] filename = file.FileName.Split('.');
+                string type = filename[filename.Length - 1];
+                pic = System.IO.Path.GetFileName(Guid.NewGuid().ToString() + "." + type);
+                string path = System.IO.Path.Combine(Server.MapPath("~/Images/Produits"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+            }
+            produit.Image = file != null ? pic : produit.Image;
+            _UnitOfWork.GetRepositoryInstance<Produit>().Update(produit);
             return RedirectToAction("Product");
         }
         public ActionResult ProductAdd()
@@ -110,8 +122,20 @@ namespace AgroPack.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ProductAdd(Produit produit)
+        public ActionResult ProductAdd(Produit produit, HttpPostedFileBase file)
         {
+            string pic = null;
+            if (file != null)
+            {
+                string[] filename = file.FileName.Split('.');
+                string type = filename[filename.Length - 1];
+                pic = System.IO.Path.GetFileName(Guid.NewGuid().ToString() + "." + type);
+                string path = System.IO.Path.Combine(Server.MapPath("~/Images/Produits"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+                
+            }
+            produit.Image = pic;
             produit.CreatedDate = DateTime.Now;
             _UnitOfWork.GetRepositoryInstance<Produit>().Add(produit);
             return RedirectToAction("Product");
