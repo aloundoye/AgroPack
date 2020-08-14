@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using AgroPack.Repository;
+using PagedList;
 
 namespace AgroPack.Models.Home
 {
@@ -11,15 +12,15 @@ namespace AgroPack.Models.Home
     {
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
         AgroPackDbContext context = new AgroPackDbContext();
-        public IEnumerable<Produit> ListOfProduits { get; set; }
+        public IPagedList<Produit> ListOfProduits { get; set; }
 
-        public HomeIndexViewModel CreateModel(string search)
+        public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@search", search??(object)DBNull.Value), 
             };
-             IEnumerable<Produit> data =  context.Database.SqlQuery<Produit>("GetBySearch @search", parameters).ToList();
+             IPagedList<Produit> data =  context.Database.SqlQuery<Produit>("GetBySearch @search", parameters).ToList().ToPagedList(page ?? 1, pageSize);
             return new HomeIndexViewModel
             {
                 ListOfProduits = data
