@@ -1,19 +1,22 @@
 ﻿@using AgroPack.Models.Home
 @using Microsoft.AspNet.Identity
-@if (Session["UserId"] == null)
-{
+
+@{
     var nbCart = 0;
     if (Session["cart"] != null)
     {
-        nbCart = ((List<Item>)Session["cart"]).Count;
+        nbCart = ((List<Item>) Session["cart"]).Count;
 
     }
-    
+}
+@if (Session["UserId"] == null)
+{
+
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link"})</li>
         <li><a href="~/Account/Login" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Se connecter</a></li>
         <li>
-            <a href="#" class="nav-link">
+            <a href="~/Home/Cart" class="nav-link">
                 <div class="d-inline-block mr-2">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0; position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">
@@ -31,10 +34,10 @@ else
     <li><a href="~/Dashboard/Index" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Votre compte</a></li>
     <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     <li>
-        <a href="#" class="nav-link">
+        <a href="~/Home/Cart" class="nav-link">
             <div class="d-inline-block mr-2">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">1</span>
+                <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">@nbCart</span>
             </div>
             Panier
         </a>

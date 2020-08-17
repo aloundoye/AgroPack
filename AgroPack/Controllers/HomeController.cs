@@ -21,8 +21,8 @@ namespace AgroPack.Controllers
 
         public ActionResult AddToCart(int productId)
         {
-
-            if (Session["cart"] == null)
+            var itemCarts = (List<Item>)Session["cart"];
+            if (Session["cart"] == null || itemCarts.Count == 0)
             {
                 var cart = new List<Item>();
                 var product = context.Produits.Find(productId);
@@ -37,16 +37,57 @@ namespace AgroPack.Controllers
             {
                 var cart = (List<Item>)Session["cart"];
                 var product = context.Produits.Find(productId);
-                cart.Add(new Item()
+                foreach (var item in cart)
                 {
-                    Produit = product,
-                    Quantity = 1
-                });
+                    if (item.Produit.Id == productId)
+                    {
+                        ++item.Quantity;
+                        break;
+                    }
+                    else
+                    {
+                         cart.Add(new Item()
+                    {
+                        Produit = product,
+                        Quantity = 1
+                    }); break;
+                    }
+                   
+
+
+
+                }
                 Session["cart"] = cart;
+
             }
-            return Redirect("Index");
+            return Redirect("Cart");
         }
 
+        public ActionResult RemoveFromCart(int productId)
+        {
+            var cart = (List<Item>)Session["cart"];
+            foreach (var item in cart)
+            {
+                if (item.Produit.Id == productId)
+                {
+                    cart.Remove(item);
+                    break;
+                }
+            }
+           
+            Session["cart"] = cart;
+            return Redirect("Cart");
+        }
+        
+        public ActionResult Cart()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Cart(string search)
+        {
+            return Redirect("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
