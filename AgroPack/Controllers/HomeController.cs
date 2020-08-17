@@ -37,26 +37,34 @@ namespace AgroPack.Controllers
             {
                 var cart = (List<Item>)Session["cart"];
                 var product = context.Produits.Find(productId);
-                foreach (var item in cart)
+                bool trouve = false;
+                int indice = cart.Count;
+                for (int i = 0; i < cart.Count; i++)
                 {
-                    if (item.Produit.Id == productId)
+
+                    if (cart[i].Produit.Id == productId)
                     {
-                        ++item.Quantity;
-                        break;
+                        
+                        trouve = true;
+                        indice = i;
+
                     }
-                    else
-                    {
-                         cart.Add(new Item()
+                }
+            
+                if (trouve)
+                {
+                    ++cart[indice].Quantity;
+                }
+                else
+                {
+                    cart.Add(new Item()
                     {
                         Produit = product,
                         Quantity = 1
-                    }); break;
-                    }
-                   
-
-
-
+                    });
                 }
+
+                
                 Session["cart"] = cart;
 
             }
