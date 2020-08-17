@@ -13,7 +13,6 @@ namespace AgroPack.Models.Home
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
         AgroPackDbContext context = new AgroPackDbContext();
         public IPagedList<Produit> ListOfProduits { get; set; }
-
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {
             SqlParameter[] parameters = new SqlParameter[]

@@ -47,6 +47,7 @@ namespace AgroPack.Controllers
                         
                         trouve = true;
                         indice = i;
+                        break;
 
                     }
                 }
