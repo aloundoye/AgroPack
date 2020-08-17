@@ -1,19 +1,24 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using AgroPack.Models.Home
+@using Microsoft.AspNet.Identity
 @if (Session["UserId"] == null)
 {
-    <ul class="navbar-nav mt-2 mt-lg-0">
-        @*<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>*@
-        
+    var nbCart = 0;
+    if (Session["cart"] != null)
+    {
+        nbCart = ((List<Item>)Session["cart"]).Count;
+
+    }
+    
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link"})</li>
-        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
+        <li><a href="~/Account/Login" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Se connecter</a></li>
         <li>
             <a href="#" class="nav-link">
                 <div class="d-inline-block mr-2">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)" >1</span>
+                    <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0; position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">
+                        @nbCart
+                    </span>
                 </div>
                 Panier
             </a>
@@ -22,31 +27,17 @@
 }
 else
 {
-    <ul class="navbar-nav ml-auto">
-        @*<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>*@
-        @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Rechercher..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+<ul class="navbar-nav ml-auto">
+    <li><a href="~/Dashboard/Index" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Votre compte</a></li>
+    <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+    <li>
+        <a href="#" class="nav-link">
+            <div class="d-inline-block mr-2">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">1</span>
             </div>
-        </form>*@
-        <li>@Html.ActionLink("Votre compte", "Index", "Dashboard", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
-        <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new {id = "loginLink", @class = "nav-link"})</li>
-        <li>
-            <a href="#" class="nav-link">
-                <div class="d-inline-block mr-2">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)" >1</span>
-                </div>
-                Panier
-            </a>
-        </li>
-    </ul>
+            Panier
+        </a>
+    </li>
+</ul>
 }

@@ -65,11 +65,16 @@
                                     @{ var stock = item.quantite > 0 ? "Disponible" : "Rupture de stock"; }
                                     @if (stock == "Disponible")
                                     {
-                                        <h5 class="alert-success" style="width: fit-content">@stock</h5>
+                                        using (Html.BeginForm("AddToCart", "Home", new { productId = item.Id }, FormMethod.Post ))
+                                        {
+                                            <button type="submit" class="fa-pull-right btn btn-outline-dark btn-circle" href="#"><i class="fa fa-shopping-cart"></i></button>
+
+                                        }
+                                        <h5 class="alert-success mt-1" style="width: fit-content">@stock</h5>
                                     }
                                     else
                                     {
-                                        <h5 class="alert-danger" style="width: fit-content">@stock</h5>
+                                        <h5 class="alert-danger mt-1" style="width: fit-content">@stock</h5>
                                     }
                                 </div>
                                 <div class="card-footer">

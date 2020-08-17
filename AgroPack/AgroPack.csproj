@@ -210,6 +210,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Models\Home\Item.cs" />
     <Compile Include="DetailsCmd.cs">
       <DependentUpon>AgroPackModel.tt</DependentUpon>
     </Compile>
@@ -2121,6 +2122,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\popper.min1.js" />
+    <Content Include="Views\Shared\_NavbarDashboard.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2167,6 +2169,7 @@
     <Content Include="Views\Dashboard\ProductAdd.cshtml" />
     <Content Include="Views\Dashboard\CategoryAdd.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
