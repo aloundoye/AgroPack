@@ -2111,12 +2111,12 @@
     <Content Include="AgroPackModel.edmx.diagram">
       <DependentUpon>AgroPackModel.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Images\Caroussel\carousel1.jpg" />
     <Content Include="Images\Caroussel\carousel2.png" />
     <Content Include="Images\Caroussel\carousel3.jpg" />
     <Content Include="Scripts\bootstrap.min1.js" />
     <Content Include="Scripts\jquery-3.5.1.min1.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -2171,6 +2171,7 @@
     <Content Include="Views\Home\Product.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\CheckoutDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

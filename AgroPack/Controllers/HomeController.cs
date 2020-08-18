@@ -19,6 +19,11 @@ namespace AgroPack.Controllers
             return View(model.CreateModel(search, 10, page));
         }
 
+        public ActionResult CheckoutDetails()
+        {
+            return View();
+        }
+
         public ActionResult AddToCart(int productId)
         {
             var itemCarts = (List<Item>)Session["cart"];

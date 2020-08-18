@@ -9,49 +9,58 @@
     var itemCart = (List<Item>)Session["cart"];
     decimal prixTotal = 0.00M;
 }
-@if (Session["cart"] == null || itemCart.Count==0)
-{
-    <h1 class="h1 mb-2">Votre panier est vide</h1>
-    @Html.ActionLink("Retourner à la liste des produits", "Index")
-}
-else
-{
-    <table class="table table-bordered table-hover table-light">
+<div class="container-fluid">
 
-        <thead>
-            <tr>
-                <th></th>
-                <th colspan="2">Nom Produit</th>
-                <th>Quantité</th>
-                <th>Prix</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in itemCart)
-            {
+    @if (Session["cart"] == null || itemCart.Count == 0)
+    {
+        <div class="alert alert-danger">        
+            <strong class="mb-3">Votre panier est vide !</strong>
+        </div>
+        @Html.ActionLink("Retourner à la liste des produits", "Index")
+    }
+    else
+    {
+        <table class="table table-bordered table-hover table-light">
+
+            <thead>
                 <tr>
-                    <td><img src="~/Images/Produits/@item.Produit.Image" style="height: 50px" /></td>
-                    <td colspan="2">@item.Produit.nom</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Produit.prix FCFA</td>
-                    @{
-                        var prixTotalProduit = item.Quantity * item.Produit.prix;
-                        prixTotal += (decimal)prixTotalProduit;
-                    }
-                    <td>@prixTotalProduit FCFA</td>
-                    <td><a href="@Url.Action("RemoveFromCart","Home", new {productId = item.Produit.Id})"><button class="btn btn-danger">Supprimer</button></a></td>
-
+                    <th></th>
+                    <th colspan="2">Nom Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Sous-Total</th>
+                    <th></th>
                 </tr>
-            }
-            <tr>
-                <td colspan="5"></td>
-                <td>@prixTotal FCFA</td>
-            </tr>
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach (var item in itemCart)
+                {
+                    <tr>
+                        <td><img src="~/Images/Produits/@item.Produit.Image" style="height: 50px" /></td>
+                        <td colspan="2">@item.Produit.nom</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Produit.prix FCFA</td>
+                        @{
+                            var prixTotalProduit = item.Quantity * item.Produit.prix;
+                            prixTotal += (decimal)prixTotalProduit;
+                        }
+                        <td>@prixTotalProduit FCFA</td>
+                        <td><a href="@Url.Action("RemoveFromCart","Home", new {productId = item.Produit.Id})"><button class="btn btn-danger">Supprimer</button></a></td>
 
-    </table>
-    @Html.ActionLink("Retourner à la liste des produits", "Index","Home")
-}
+                    </tr>
+                }
+            </tbody>
 
+        </table>
+        <div class="clearfix">
+            <div class="float-right row" style="margin-right: 240px ">
+                <label class="" style="font-size: 15px; font-weight: 500">Total :</label>
+                <div class="ml-3 text-primary" style="font-size: 17px;">@prixTotal FCFA</div>
+            </div>
+        </div>
+
+
+        @Html.ActionLink("Retourner à la liste des produits", "Index", "Home")
+    }
+
+</div>
