@@ -173,50 +173,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agriculteur.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AgroPackModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AgroPackModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AgroPackModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AgroPackModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AgroPackModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Agriculteur.cs" />
+    <Compile Include="AgroPackDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Categorie.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Champ.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Client.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Commande.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Categorie.cs" />
+    <Compile Include="Champ.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Commande.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="DetailsCmd.cs" />
+    <Compile Include="Entreprise.cs" />
+    <Compile Include="Migrations\202008181609166_InitialModel.cs" />
+    <Compile Include="Migrations\202008181609166_InitialModel.designer.cs">
+      <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
-    <Compile Include="DetailsCmd.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entreprise.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Detailcategorie.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -229,26 +206,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProduitEditViewModel.cs" />
-    <Compile Include="Panier.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Produit.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Panier.cs" />
+    <Compile Include="Produit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\GenericUnitOfWork.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Utilisateur.cs">
-      <DependentUpon>AgroPackModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Utilisateur.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminStyles\css\sb-admin-2.css" />
@@ -1917,16 +1882,6 @@
     <Content Include="AdminStyles\vendor\jquery\jquery.min.js" />
     <Content Include="AdminStyles\vendor\jquery\jquery.slim.js" />
     <Content Include="AdminStyles\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="AgroPackModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgroPackModel.edmx</DependentUpon>
-      <LastGenOutput>AgroPackModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AgroPackModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgroPackModel.edmx</DependentUpon>
-      <LastGenOutput>AgroPackModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.min1.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -2104,13 +2059,6 @@
     <Content Include="AdminStyles\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="AdminStyles\vendor\jquery\jquery.min.map" />
     <Content Include="AdminStyles\vendor\jquery\jquery.slim.min.map" />
-    <EntityDeploy Include="AgroPackModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgroPackModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="AgroPackModel.edmx.diagram">
-      <DependentUpon>AgroPackModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Images\Caroussel\carousel1.jpg" />
     <Content Include="Images\Caroussel\carousel2.png" />
     <Content Include="Images\Caroussel\carousel3.jpg" />
@@ -2182,6 +2130,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008181609166_InitialModel.resx">
+      <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
