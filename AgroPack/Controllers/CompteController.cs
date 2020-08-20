@@ -9,7 +9,8 @@ using Newtonsoft.Json;
 
 namespace AgroPack.Controllers
 {
-    public class DashboardController : Controller
+    [Authorize]
+    public class CompteController : Controller
     {
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
 

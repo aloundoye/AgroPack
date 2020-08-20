@@ -5,15 +5,41 @@
     var nbCart = 0;
     if (Session["cart"] != null)
     {
-        nbCart = ((List<Item>) Session["cart"]).Count;
+        nbCart = ((List<Item>)Session["cart"]).Count;
 
     }
 }
-@if (Session["UserId"] == null)
+@if (Request.IsAuthenticated)
 {
-
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ml-auto" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="navbar-nav ml-auto">
+            <li><a href="~/Dashboard/Index" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Votre compte</a></li>
+        
+       
+            @*<li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>*@
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Se déconnecter</a></li>
+        
+        
+            <li>
+                <a href="~/Home/Cart" class="nav-link">
+                    <div class="d-inline-block mr-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">@nbCart</span>
+                    </div>
+                    Panier
+                </a>
+            </li>
+        </ul>
+    }
+}
+else
+{
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink", @class = "nav-link"})</li>
+        <li>@Html.ActionLink("Créer un compte", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
         <li><a href="~/Account/Login" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Se connecter</a></li>
         <li>
             <a href="~/Home/Cart" class="nav-link">
@@ -27,20 +53,4 @@
             </a>
         </li>
     </ul>
-}
-else
-{
-<ul class="navbar-nav ml-auto">
-    <li><a href="~/Dashboard/Index" class="nav-link" id="loginLink"><i class="fas fa-user"></i> Votre compte</a></li>
-    <li>@Html.ActionLink("Se déconnecter", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-    <li>
-        <a href="~/Home/Cart" class="nav-link">
-            <div class="d-inline-block mr-2">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="d-lg-inline d-none" style="color: white; background-color: #f68b1e; border-radius: 50%; top: 0;  position: absolute; height: 20px; min-width: 19px; text-align: center; font-weight: 700; transform: translate(-50%, 10%)">@nbCart</span>
-            </div>
-            Panier
-        </a>
-    </li>
-</ul>
 }

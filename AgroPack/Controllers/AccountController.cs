@@ -66,30 +66,29 @@ namespace AgroPack.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(Utilisateur user)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            using (var db = new AgroPackDbContext())
+            if (!ModelState.IsValid)
             {
-                Utilisateur utilisateur = db.Utilisateurs
-                    .Where(u => (u.email == user.email && u.password == user.password)).FirstOrDefault();
-                if (utilisateur != null)
-                {
-                    Session["email"] = utilisateur.email;
-                    Session["UserId"] = utilisateur.UtilisateurID;
-                    ViewBag.Email = utilisateur.email;
-                    ViewBag.UserId = utilisateur.UtilisateurID;
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ViewBag.ErrorMsg = "Login failed";
-                    Session["email"] = null;
-                    Session["UserId"] = null;
-                    ViewBag.Email = string.Empty;
-                    ViewBag.UserId = "-1";
-                }
+                return View(model);
             }
-            return View();
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Votre Email ou votre mot de passe est incorrect");
+                    return View(model);
+            }
         }
 
         //
@@ -148,35 +147,29 @@ namespace AgroPack.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(Utilisateur user)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            using (var db = new AgroPackDbContext())
+            if (ModelState.IsValid)
             {
-                ViewBag.ErrMsg = string.Empty;
-                ViewBag.SuccessMsg = string.Empty;
-                Utilisateur utilisateur = db.Utilisateurs.Where(u => u.email == user.email).FirstOrDefault();
-                if (utilisateur != null)
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
                 {
-                    ViewBag.ErrMsg = "User Exists";
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    db.Utilisateurs.Add(user);
-                    if (user.type=="Client")
-                    {
-                        Client client = new Client{id = user.UtilisateurID};
-                        db.Clients.Add(client);
-                    }
-                    else if(user.type=="Agriculteur")
-                    {
-                        Agriculteur agriculteur = new Agriculteur{id = user.UtilisateurID};
-                        db.Agriculteurs.Add(agriculteur);
-                    }
-                    await db.SaveChangesAsync();
-                    ViewBag.SuccessMsg = "User Added!";
-                }
+                AddErrors(result);
             }
-            return View();
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         //
@@ -394,14 +387,11 @@ namespace AgroPack.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            Session["email"] = null;
-            Session["UserId"] = null;
-            ViewBag.UserId = "-1";
-
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 

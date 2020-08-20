@@ -185,7 +185,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\CompteController.cs" />
     <Compile Include="DetailsCmd.cs" />
     <Compile Include="Entreprise.cs" />
     <Compile Include="Migrations\202008181609166_InitialModel.cs" />
@@ -2110,20 +2110,21 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Dashboard\Categories.cshtml" />
-    <Content Include="Views\Dashboard\UpdateCategory.cshtml" />
-    <Content Include="Views\Dashboard\Champs.cshtml" />
-    <Content Include="Views\Dashboard\Order.cshtml" />
-    <Content Include="Views\Dashboard\Product.cshtml" />
-    <Content Include="Views\Dashboard\ProductEdit.cshtml" />
-    <Content Include="Views\Dashboard\CategoriesEdit.cshtml" />
-    <Content Include="Views\Dashboard\ProductAdd.cshtml" />
-    <Content Include="Views\Dashboard\CategoryAdd.cshtml" />
+    <Content Include="Views\Compte\Dashboard.cshtml" />
+    <Content Include="Views\Compte\Categories.cshtml" />
+    <Content Include="Views\Compte\UpdateCategory.cshtml" />
+    <Content Include="Views\Compte\Champs.cshtml" />
+    <Content Include="Views\Compte\Order.cshtml" />
+    <Content Include="Views\Compte\Product.cshtml" />
+    <Content Include="Views\Compte\ProductEdit.cshtml" />
+    <Content Include="Views\Compte\CategoriesEdit.cshtml" />
+    <Content Include="Views\Compte\ProductAdd.cshtml" />
+    <Content Include="Views\Compte\CategoryAdd.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\CheckoutDetails.cshtml" />
+    <Content Include="Views\Compte\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
