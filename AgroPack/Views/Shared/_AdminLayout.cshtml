@@ -19,7 +19,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../">
@@ -33,7 +33,7 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item @ViewBag.ActiveIndex">
-                <a class="nav-link" href="~/Dashboard/Index">
+                <a class="nav-link" href="~/Compte/Index">
                     <i class="fas fa-user"></i>
                     <span>Votre Compte AgroPack</span>
                 </a>
@@ -43,38 +43,59 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @ViewBag.ActiveDashboard">
-                <a class="nav-link" href="~/Dashboard/Dashboard">
+                <a class="nav-link" href="~/Compte/Dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Tableau de bord</span>
                 </a>
             </li>
 
             <li class="nav-item @ViewBag.ActiveCategorie">
-                <a class="nav-link" href="~/Dashboard/Categories">
+                <a class="nav-link" href="~/Compte/Categories">
                     <i class="fas fa-tags"></i>
                     <span>Catégories</span>
                 </a>
             </li>
             <li class="nav-item @ViewBag.ActiveProduit">
-                <a class="nav-link" href="~/Dashboard/Product">
+                <a class="nav-link" href="~/Compte/Product">
                     <i class="fab fa-product-hunt"></i>
                     <span>Produits</span>
                 </a>
             </li>
             <li class="nav-item @ViewBag.ActiveChamps">
-                <a class="nav-link" href="~/Dashboard/Champs">
+                <a class="nav-link" href="~/Compte/Champs">
                     <i class="fas fa-tractor"></i>
                     <span>Mes Champs</span>
                 </a>
             </li>
             <li class="nav-item @ViewBag.ActiveCommande">
-                <a class="nav-link" href="~/Dashboard/Order">
+                <a class="nav-link" href="~/Compte/Order">
                     <i class="fas fa-shopping-basket"></i>
                     <span>Commandes</span>
                 </a>
             </li>
 
             <!-- Divider -->
+            
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @ViewBag.ActiveInfo">
+                <a class="nav-link" href="~/Compte/">
+                    <span>Informations personnelles</span>
+                </a>
+            </li>
+
+            <li class="nav-item @ViewBag.ActiveAdress">
+                <a class="nav-link" href="~/Compte/">
+                    <span>Adresses</span>
+                </a>
+            </li>
+            <li class="nav-item @ViewBag.ActivePassword">
+                <a class="nav-link" href="~/Compte/">
+                    <span>Modifier votre mot de passe</span>
+                </a>
+            </li>
+
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->

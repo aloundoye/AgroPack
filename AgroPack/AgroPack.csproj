@@ -2112,7 +2112,6 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Compte\Dashboard.cshtml" />
     <Content Include="Views\Compte\Categories.cshtml" />
-    <Content Include="Views\Compte\UpdateCategory.cshtml" />
     <Content Include="Views\Compte\Champs.cshtml" />
     <Content Include="Views\Compte\Order.cshtml" />
     <Content Include="Views\Compte\Product.cshtml" />
@@ -2125,6 +2124,7 @@
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\CheckoutDetails.cshtml" />
     <Content Include="Views\Compte\Index.cshtml" />
+    <Content Include="Views\Compte\CategoryDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

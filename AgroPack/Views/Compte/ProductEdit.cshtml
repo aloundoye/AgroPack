@@ -8,7 +8,7 @@
 <div class="container">
      
 
-@using (Html.BeginForm("ProductEdit", "Dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("ProductEdit", "Compte", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -121,7 +121,7 @@
 <div class="col-md-6">
 
     <div>
-        @Html.ActionLink("Retour à la liste", "Product","Dashboard")
+        @Html.ActionLink("Retour à la liste", "Product","Compte")
     </div>
 </div>
 </div>

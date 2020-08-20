@@ -1,0 +1,32 @@
+﻿@model AgroPack.Categorie
+
+@{
+    ViewBag.ActiveCategorie = "active";
+    ViewBag.Title = "Supprimer Catégories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3>Voulez-vous vraiment le supprimer?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Nom de la catégorie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model =>Model.Id)
+        @Html.HiddenFor(Model =>Model.Name)
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retourner à la liste", "Index")
+        </div>
+    }
+</div>

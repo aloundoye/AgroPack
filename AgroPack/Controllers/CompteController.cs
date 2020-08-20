@@ -12,6 +12,7 @@ namespace AgroPack.Controllers
     [Authorize]
     public class CompteController : Controller
     {
+        private AgroPackDbContext agroPackDbContext = new AgroPackDbContext();
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
 
         public List<SelectListItem> GetCategorie()
@@ -39,12 +40,19 @@ namespace AgroPack.Controllers
             }
             return list;
         }
+
         // GET: Dashboard
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
+        //Catégorie
         public ActionResult Categories()
         {
             List<Categorie> allCategories =
@@ -73,20 +81,38 @@ namespace AgroPack.Controllers
         public ActionResult CategoryAdd(Categorie categorie)
         {
 
-            //using (AgroPackDbContext db = new AgroPackDbContext())
-            //{
-            //    Categorie cat = (from c in db.Categories select c).OrderByDescending(x => x.Id).FirstOrDefault();
-            //    categorie.Id = cat.Id + 1;
-
-            //}
-
-            //string guid = Guid.NewGuid().ToString();
+            
 
             _UnitOfWork.GetRepositoryInstance<Categorie>().Add(categorie);
             return RedirectToAction("Categories");
 
         }
 
+        public ActionResult CategoryDelete(int categoryId)
+        {
+            return View(_UnitOfWork.GetRepositoryInstance<Categorie>().GetFirstorDefault(categoryId));
+        }
+        [HttpPost]
+        public ActionResult CategoryDelete(Categorie categorie)
+        {
+
+            var category = agroPackDbContext.Categories.Find(categorie.Id);
+            agroPackDbContext.Categories.Remove(category);
+
+            try
+            {
+                agroPackDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+            return RedirectToAction("Categories");
+        }
+
+
+        //Produit
         public ActionResult Product()
         {
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetProduct());
@@ -142,10 +168,14 @@ namespace AgroPack.Controllers
             return RedirectToAction("Product");
 
         }
+
+        //Champs
         public ActionResult Champs()
         {
             return View();
         }
+
+        //Commandes
         public ActionResult Order()
         {
             return View();

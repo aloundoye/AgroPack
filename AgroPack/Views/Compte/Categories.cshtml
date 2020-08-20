@@ -7,7 +7,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="~/Dashboard/CategoryAdd" class=" m-0 btn btn-info fa-pull-right"><i class="fas fa-plus"></i> Ajouter une nouvelle catégorie</a>
+        <a href="~/Compte/CategoryAdd" class=" m-0 btn btn-info fa-pull-right"><i class="fas fa-plus"></i> Ajouter une nouvelle catégorie</a>
         <h6 class="m-0 font-weight-bold text-primary">Détails Catégorie</h6>
     </div>
 <div class="card-body">
@@ -15,14 +15,12 @@
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 <thead>
 <tr>
-    <th>No.</th>
     <th>Nom</th>
     <th>Action</th>
 </tr>
 </thead>
 <tfoot>
 <tr>
-    <th>No.</th>
     <th>Nom</th>
     <th>Action</th>
 </tr>
@@ -31,10 +29,10 @@
 @foreach (var item in Model)
 {
     <tr>
-        <td>@item.Id</td>
         <td>@item.Name</td>
         <td>                            
-            @Html.ActionLink("Modifier", "CategoriesEdit", new {categoryId = item.Id})
+            @Html.ActionLink("Modifier", "CategoriesEdit", new {categoryId = item.Id}) | 
+            @Html.ActionLink("Supprimer", "CategoryDelete", new{categoryId = item.Id})
         </td>
        
     </tr>

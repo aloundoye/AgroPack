@@ -97,11 +97,6 @@ namespace AgroPack.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Cart(string search)
-        {
-            return Redirect("Index");
-        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
