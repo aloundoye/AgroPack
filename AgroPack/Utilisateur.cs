@@ -6,6 +6,11 @@ namespace AgroPack
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    public enum typeCompte
+    {
+        Client, Agriculteur
+    }
+
     public partial class Utilisateur
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -47,8 +52,6 @@ namespace AgroPack
 
         [Column(TypeName = "date")]
         public DateTime? dateDeNaissance { get; set; }
-
-        public int? idRole { get; set; }
 
         public virtual Agriculteur Agriculteur { get; set; }
 

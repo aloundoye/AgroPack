@@ -192,6 +192,10 @@
     <Compile Include="Migrations\202008181609166_InitialModel.designer.cs">
       <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008200005461_DelIdRole.cs" />
+    <Compile Include="Migrations\202008200005461_DelIdRole.designer.cs">
+      <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
     <Compile Include="Models\Detailcategorie.cs" />
@@ -2134,6 +2138,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008181609166_InitialModel.resx">
       <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008200005461_DelIdRole.resx">
+      <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

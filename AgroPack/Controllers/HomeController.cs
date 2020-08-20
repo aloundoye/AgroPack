@@ -16,7 +16,7 @@ namespace AgroPack.Controllers
         public ActionResult Index( string search, int? page)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
-            return View(model.CreateModel(search, 10, page));
+            return View(model.CreateModel(search, 12, page));
         }
 
         public ActionResult CheckoutDetails()
