@@ -16,7 +16,8 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Nom
+                    <th>Nom</th>
+                    <th>Catégorie</th>
                     <th>Prix</th>
                     <th>Quantité</th>
                     <th>Action</th>
@@ -24,7 +25,8 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Nom
+                        <th>Nom</th>
+                        <th>Catégorie</th>
                         <th>Prix</th>
                         <th>Quantité</th>
                         <th>Action</th>
@@ -35,10 +37,12 @@
                 {
                     <tr>
                         <td>@item.nom</td>
+                        <td>@item.Categorie.Name</td>
                         <td>@item.prix</td>
                         <td>@item.quantite</td>
                         <td>
-                            @Html.ActionLink("Modifier", "ProductEdit", new {productId = item.Id})
+                            @Html.ActionLink("Modifier", "ProductEdit", new {productId = item.Id}, new{@class="btn btn-outline-primary"}) | 
+                            @Html.ActionLink("Supprimer", "ProductDelete", new {productId = item.Id}, new{@class="btn btn-outline-danger"})
                         </td>
        
                     </tr>

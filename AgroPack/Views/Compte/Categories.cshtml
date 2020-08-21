@@ -31,8 +31,8 @@
     <tr>
         <td>@item.Name</td>
         <td>                            
-            @Html.ActionLink("Modifier", "CategoriesEdit", new {categoryId = item.Id}) | 
-            @Html.ActionLink("Supprimer", "CategoryDelete", new{categoryId = item.Id})
+            @Html.ActionLink("Modifier", "CategoriesEdit", new { categoryId = item.Id },new{@class= "btn btn-outline-primary" }) | 
+            @Html.ActionLink("Supprimer", "CategoryDelete", new{categoryId = item.Id}, new {@class = "btn btn-outline-danger" })
         </td>
        
     </tr>

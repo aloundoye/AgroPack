@@ -1,0 +1,66 @@
+﻿@model AgroPack.Produit
+
+@{
+    ViewBag.ActiveProduit = "active";
+    ViewBag.Title = "Supprimer Produit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3>Voulez-vous vraiment le supprimer?</h3>
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            Nom du produit : 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+           Quantité
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantite)
+        </dd>
+
+        <dt>
+           Comme prix :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prix)
+        </dd>
+
+        <dt>
+            Appertenant à votre champ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idChamps)
+        </dd>
+
+        <dt>
+           Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+       
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model=>Model.Id)
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retourner à la liste", "Index")
+        </div>
+    }
+</div>

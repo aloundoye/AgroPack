@@ -169,6 +169,29 @@ namespace AgroPack.Controllers
 
         }
 
+        public ActionResult ProductDelete(int productId)
+        {
+            return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
+        }
+        [HttpPost]
+        public ActionResult ProductDelete(Produit produit)
+        {
+
+            var product = agroPackDbContext.Produits.Find(produit.Id);
+            agroPackDbContext.Produits.Remove(product);
+
+            try
+            {
+                agroPackDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+            return RedirectToAction("Product");
+        }
+
         //Champs
         public ActionResult Champs()
         {

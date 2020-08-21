@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202008200005461_DelIdRole.designer.cs">
       <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008211124499_AddOthersUserField.cs" />
+    <Compile Include="Migrations\202008211124499_AddOthersUserField.designer.cs">
+      <DependentUpon>202008211124499_AddOthersUserField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
     <Compile Include="Models\Detailcategorie.cs" />
@@ -2125,6 +2129,7 @@
     <Content Include="Views\Home\CheckoutDetails.cshtml" />
     <Content Include="Views\Compte\Index.cshtml" />
     <Content Include="Views\Compte\CategoryDelete.cshtml" />
+    <Content Include="Views\Compte\ProductDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2142,6 +2147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008200005461_DelIdRole.resx">
       <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008211124499_AddOthersUserField.resx">
+      <DependentUpon>202008211124499_AddOthersUserField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
