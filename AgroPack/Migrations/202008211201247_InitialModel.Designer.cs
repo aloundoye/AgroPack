@@ -7,13 +7,13 @@ namespace AgroPack.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddOthersUserField : IMigrationMetadata
+    public sealed partial class InitialModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddOthersUserField));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008211124499_AddOthersUserField"; }
+            get { return "202008211201247_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

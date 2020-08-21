@@ -7,13 +7,13 @@ namespace AgroPack.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DelIdRole : IMigrationMetadata
+    public sealed partial class Mapping : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DelIdRole));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Mapping));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008200005461_DelIdRole"; }
+            get { return "202008211218423_Mapping"; }
         }
         
         string IMigrationMetadata.Source

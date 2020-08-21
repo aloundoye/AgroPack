@@ -174,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agriculteur.cs" />
-    <Compile Include="AgroPackDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -188,17 +187,13 @@
     <Compile Include="Controllers\CompteController.cs" />
     <Compile Include="DetailsCmd.cs" />
     <Compile Include="Entreprise.cs" />
-    <Compile Include="Migrations\202008181609166_InitialModel.cs" />
-    <Compile Include="Migrations\202008181609166_InitialModel.designer.cs">
-      <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\202008211201247_InitialModel.cs" />
+    <Compile Include="Migrations\202008211201247_InitialModel.designer.cs">
+      <DependentUpon>202008211201247_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008200005461_DelIdRole.cs" />
-    <Compile Include="Migrations\202008200005461_DelIdRole.designer.cs">
-      <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008211124499_AddOthersUserField.cs" />
-    <Compile Include="Migrations\202008211124499_AddOthersUserField.designer.cs">
-      <DependentUpon>202008211124499_AddOthersUserField.cs</DependentUpon>
+    <Compile Include="Migrations\202008211218423_Mapping.cs" />
+    <Compile Include="Migrations\202008211218423_Mapping.designer.cs">
+      <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
@@ -2142,14 +2137,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008181609166_InitialModel.resx">
-      <DependentUpon>202008181609166_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008211201247_InitialModel.resx">
+      <DependentUpon>202008211201247_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008200005461_DelIdRole.resx">
-      <DependentUpon>202008200005461_DelIdRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008211124499_AddOthersUserField.resx">
-      <DependentUpon>202008211124499_AddOthersUserField.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008211218423_Mapping.resx">
+      <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
