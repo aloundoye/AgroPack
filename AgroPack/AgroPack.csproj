@@ -195,6 +195,10 @@
     <Compile Include="Migrations\202008211218423_Mapping.designer.cs">
       <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008211237163_OtherFieldUser.cs" />
+    <Compile Include="Migrations\202008211237163_OtherFieldUser.designer.cs">
+      <DependentUpon>202008211237163_OtherFieldUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
     <Compile Include="Models\Detailcategorie.cs" />
@@ -2142,6 +2146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008211218423_Mapping.resx">
       <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008211237163_OtherFieldUser.resx">
+      <DependentUpon>202008211237163_OtherFieldUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
