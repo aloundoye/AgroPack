@@ -11,17 +11,20 @@ namespace AgroPack
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Agriculteur()
         {
-            Commandes = new HashSet<Commande>();
+            Champs = new HashSet<Champ>();
+            Produits = new HashSet<Produit>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id { get; set; }
+        public string AgriculteurId { get; set; }
 
         public int? idEntreprise { get; set; }
 
-        public virtual Utilisateur Utilisateur { get; set; }
+        public virtual Entreprise Entrepris { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Commande> Commandes { get; set; }
+        public virtual ICollection<Champ> Champs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Produit> Produits { get; set; }
     }
 }

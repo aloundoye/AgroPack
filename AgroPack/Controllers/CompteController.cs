@@ -34,8 +34,8 @@ namespace AgroPack.Controllers
             {
                 list.Add(new SelectListItem
                 {
-                    Value = item.Id.ToString(),
-                    Text = item.nom
+                    Value = item.ChampId.ToString(),
+                    Text = item.Nom
                 });
             }
             return list;

@@ -15,9 +15,11 @@ namespace AgroPack
             Paniers = new HashSet<Panier>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        public int? prop_id { get; set; }
+        [StringLength(128)]
+        public string AgriculteurId { get; set; }
 
         [StringLength(100)]
         public string nom { get; set; }
@@ -38,6 +40,8 @@ namespace AgroPack
         [Column(TypeName = "date")]
         public DateTime? CreatedDate { get; set; }
 
+        public virtual Agriculteur Agriculteur { get; set; }
+
         public virtual Categorie Categorie { get; set; }
 
         public virtual Champ Champ { get; set; }
@@ -47,7 +51,5 @@ namespace AgroPack
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Panier> Paniers { get; set; }
-
-        public virtual Utilisateur Utilisateur { get; set; }
     }
 }

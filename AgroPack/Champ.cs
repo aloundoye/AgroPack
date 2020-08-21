@@ -14,15 +14,16 @@ namespace AgroPack
             Produits = new HashSet<Produit>();
         }
 
-        public int prop_id { get; set; }
-
-        public int Id { get; set; }
+        public int ChampId { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string nom { get; set; }
+        public string Nom { get; set; }
 
-        public virtual Utilisateur Utilisateur { get; set; }
+        [StringLength(128)]
+        public string AgriculteurId { get; set; }
+
+        public virtual Agriculteur Agriculteur { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }

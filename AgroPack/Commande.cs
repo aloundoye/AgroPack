@@ -16,11 +16,11 @@ namespace AgroPack
 
         public int Id { get; set; }
 
-        public int client_id { get; set; }
+        [Required]
+        [StringLength(128)]
+        public string ClientId { get; set; }
 
-        public int prop_id { get; set; }
-
-        public int prod_id { get; set; }
+        public int AgriculteurId { get; set; }
 
         [Column(TypeName = "text")]
         public string libelle { get; set; }
@@ -32,10 +32,6 @@ namespace AgroPack
 
         [StringLength(50)]
         public string statut { get; set; }
-
-        public virtual Agriculteur Agriculteur { get; set; }
-
-        public virtual Client Client { get; set; }
 
         public virtual Produit Produit { get; set; }
 

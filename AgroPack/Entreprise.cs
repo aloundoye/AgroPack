@@ -9,6 +9,12 @@ namespace AgroPack
     [Table("Entreprises")]
     public partial class Entreprise
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Entreprise()
+        {
+            Agriculteurs = new HashSet<Agriculteur>();
+        }
+
         public int id { get; set; }
 
         [StringLength(50)]
@@ -19,5 +25,8 @@ namespace AgroPack
 
         [StringLength(50)]
         public string tel { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agriculteur> Agriculteurs { get; set; }
     }
 }

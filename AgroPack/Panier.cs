@@ -11,7 +11,8 @@ namespace AgroPack
     {
         public int id { get; set; }
 
-        public int? idClient { get; set; }
+        [StringLength(128)]
+        public string UserId { get; set; }
 
         public int? idProduit { get; set; }
 
@@ -19,7 +20,5 @@ namespace AgroPack
         public string Statut { get; set; }
 
         public virtual Produit Produit { get; set; }
-
-        public virtual Utilisateur Utilisateur { get; set; }
     }
 }
