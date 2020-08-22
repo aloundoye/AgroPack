@@ -19,7 +19,7 @@ namespace AgroPack
 
         public int? idEntreprise { get; set; }
 
-        public virtual Entreprise Entrepris { get; set; }
+        public virtual Entreprise Entreprise { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Champ> Champs { get; set; }

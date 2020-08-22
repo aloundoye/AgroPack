@@ -124,7 +124,7 @@ namespace AgroPack.Models
 
             modelBuilder.Entity<Entreprise>()
                 .HasMany(e => e.Agriculteurs)
-                .WithOptional(e => e.Entrepris)
+                .WithOptional(e => e.Entreprise)
                 .HasForeignKey(e => e.idEntreprise);
 
             modelBuilder.Entity<Panier>()
