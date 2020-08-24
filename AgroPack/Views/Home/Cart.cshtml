@@ -38,7 +38,24 @@
                     <tr>
                         <td><img src="~/Images/Produits/@item.Produit.Image" style="height: 50px" /></td>
                         <td colspan="2">@item.Produit.nom</td>
-                        <td>@item.Quantity</td>
+                        <td>
+                            
+                            @using (Html.BeginForm("UpdateQuantity","Home", FormMethod.Post))
+                            {
+                                @Html.Hidden("productId", item.Produit.Id)
+                                <select class="form-control" name="Quantity" onchange="this.form.submit();">
+                                    @for (int i = 1; i <= item.Produit.quantite; i++)
+                                    {
+                                        var selected = "";
+                                        if (item.Quantity == i)
+                                        {
+                                            selected = "selected";
+                                        }
+                                        <option @selected>@i</option>
+                                    }
+                                </select>
+                            }
+                        </td>
                         <td>@item.Produit.prix FCFA</td>
                         @{
                             var prixTotalProduit = item.Quantity * item.Produit.prix;

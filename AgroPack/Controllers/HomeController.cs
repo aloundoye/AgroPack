@@ -98,6 +98,38 @@ namespace AgroPack.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult UpdateQuantity(string Quantity, int productId)
+        {
+            var cart = (List<Item>)Session["cart"];
+            var product = context.Produits.Find(productId);
+            bool trouve = false;
+            int indice = cart.Count;
+            for (int i = 0; i < cart.Count; i++)
+            {
+
+                if (cart[i].Produit.Id == productId)
+                {
+
+                    trouve = true;
+                    indice = i;
+                    break;
+
+                }
+            }
+
+            if (trouve)
+            {
+                if (Quantity != null)
+                {
+                    int quantity = Convert.ToInt32(Quantity);
+                    cart[indice].Quantity = quantity;
+                }
+            }
+            Session["cart"] = cart;
+            return Redirect("Cart");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
