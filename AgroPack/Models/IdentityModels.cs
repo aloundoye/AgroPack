@@ -12,19 +12,39 @@ namespace AgroPack.Models
     // You can add profile data for the user by adding more properties to your User class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-
         [Required]
+        [Display(Name = "Nom")]
         [StringLength(100)]
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Prénom")]
         [StringLength(100)]
         public string FirstName { get; set; }
+        [Display(Name = "Adresse")]
         [StringLength(100)]
         public string Address { get; set; }
+        [Display(Name = "Ville")]
+        [StringLength(100)]
+        public string City { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? Birthday { get; set; }
+
+        public string DisplayAddress
+        {
+            get
+            {
+                string dspAddress =
+                    string.IsNullOrWhiteSpace(this.Address) ? "" : this.Address;
+                string dspCity =
+                    string.IsNullOrWhiteSpace(this.City) ? "" : this.City;
+
+                return string
+                    .Format("{0} {1} {2} {3}", dspAddress, dspCity);
+            }
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -32,6 +52,13 @@ namespace AgroPack.Models
             // Add custom user claims here
             return userIdentity;
         }
+    }
+
+    public class Role : IdentityRole
+    {
+        public Role(): base(){}
+        public Role(string name) : base(name) {}
+        public string Description { get; set; }
     }
 
     public class AgroPackDbContext : IdentityDbContext<User>

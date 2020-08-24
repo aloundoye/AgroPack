@@ -106,4 +106,7 @@ namespace AgroPack
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+
+    //Role
+    
 }

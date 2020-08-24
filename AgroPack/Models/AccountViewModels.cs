@@ -64,15 +64,11 @@ namespace AgroPack.Models
 
     public class RegisterViewModel
     {
-        /*[Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Prénom")]
-        public string prenom { get; set; }
+        public string FirstName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Nom")]
-        public string nom { get; set; }*/
+        public string LastName { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -88,11 +84,9 @@ namespace AgroPack.Models
         [Display(Name = "Confirmez votre mot de passe")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        /*
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Téléphone mobile")]
-        public string tel { get; set; }
+        public string PhoneNumber { get; set; }
+        /*
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Type de compte")]
@@ -103,15 +97,6 @@ namespace AgroPack.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
-        [Display(Name = "Prenom")]
-        public string prenom { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
-        [Display(Name = "Prenom")]
-        public string nom { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

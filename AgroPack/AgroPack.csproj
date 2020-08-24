@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202008211645356_test.designer.cs">
       <DependentUpon>202008211645356_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008232354524_AddingCityFielUser.cs" />
+    <Compile Include="Migrations\202008232354524_AddingCityFielUser.designer.cs">
+      <DependentUpon>202008232354524_AddingCityFielUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
     <Compile Include="Models\Detailcategorie.cs" />
@@ -2155,6 +2159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008211645356_test.resx">
       <DependentUpon>202008211645356_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008232354524_AddingCityFielUser.resx">
+      <DependentUpon>202008232354524_AddingCityFielUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

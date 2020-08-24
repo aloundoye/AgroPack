@@ -4,7 +4,7 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-@*
+
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
@@ -22,27 +22,27 @@
             </div>
         </div>
         <div class="form-group row">
-            @Html.LabelFor(m => m.prenom, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.prenom, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group row">
-            @Html.LabelFor(m => m.nom, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.nom, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group row">
-            @Html.LabelFor(m => m.email, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group row">
-            @Html.LabelFor(m => m.password, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group row">
@@ -52,18 +52,19 @@
             </div>
         </div>
         <div class="form-group row">
-            @Html.LabelFor(m => m.tel, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.tel, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
             </div>
         </div>
+        @*
         <div class="form-group row">
             @Html.LabelFor(m => m.type, new { @class = "col-md-2 control-label" })
 
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.type, new SelectList(Enum.GetValues(typeof(typeCompte))), "Type de compte", new { @class = "form-control" })
             </div>
-        </div>
+        </div>*@
         <div class="form-group row">
             <div class="col-md-offset-2 col-md-10 ml-auto mt-2">
                 <input type="submit" class="btn btn-primary" value="CREER VOTRE COMPTE" />
@@ -71,8 +72,8 @@
         </div>
 
     }
-*@
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
@@ -101,7 +102,7 @@
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
-}
+}*@
 
 
 @section Scripts {
