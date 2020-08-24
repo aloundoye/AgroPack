@@ -1,4 +1,5 @@
-﻿@model AgroPack.Models.RegisterViewModel
+﻿@using AgroPack.Models
+@model AgroPack.Models.RegisterViewModel
 @{
     ViewBag.Title = "Inscription";
 }
@@ -57,14 +58,14 @@
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
             </div>
         </div>
-        @*
+        
         <div class="form-group row">
-            @Html.LabelFor(m => m.type, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 control-label" })
 
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.type, new SelectList(Enum.GetValues(typeof(typeCompte))), "Type de compte", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.RoleName, new SelectList(Enum.GetValues(typeof(TypeCompte))), "Type de compte", new { @class = "form-control" })
             </div>
-        </div>*@
+        </div>
         <div class="form-group row">
             <div class="col-md-offset-2 col-md-10 ml-auto mt-2">
                 <input type="submit" class="btn btn-primary" value="CREER VOTRE COMPTE" />

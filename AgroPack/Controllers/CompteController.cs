@@ -53,6 +53,7 @@ namespace AgroPack.Controllers
         }
 
         //Catégorie
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult Categories()
         {
             List<Categorie> allCategories =
@@ -60,11 +61,14 @@ namespace AgroPack.Controllers
             return View(allCategories);
         }
 
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult CategoriesEdit(int categoryId)
         {
 
             return View(_UnitOfWork.GetRepositoryInstance<Categorie>().GetFirstorDefault(categoryId));
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult CategoriesEdit(Categorie categorie)
         {
@@ -72,11 +76,13 @@ namespace AgroPack.Controllers
             return RedirectToAction("Categories");
         }
 
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult CategoryAdd()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult CategoryAdd(Categorie categorie)
         {
@@ -88,10 +94,13 @@ namespace AgroPack.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult CategoryDelete(int categoryId)
         {
             return View(_UnitOfWork.GetRepositoryInstance<Categorie>().GetFirstorDefault(categoryId));
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult CategoryDelete(Categorie categorie)
         {
@@ -113,16 +122,22 @@ namespace AgroPack.Controllers
 
 
         //Produit
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult Product()
         {
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetProduct());
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult ProductEdit( int productId)
         {
             ViewBag.CategorieList = GetCategorie();
             ViewBag.ChampsList = GetChamps();
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult ProductEdit(Produit produit, HttpPostedFileBase file)
         {
@@ -141,6 +156,8 @@ namespace AgroPack.Controllers
             _UnitOfWork.GetRepositoryInstance<Produit>().Update(produit);
             return RedirectToAction("Product");
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult ProductAdd()
         {
             ViewBag.CategorieList = GetCategorie();
@@ -148,6 +165,8 @@ namespace AgroPack.Controllers
             
             return View();
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult ProductAdd(Produit produit, HttpPostedFileBase file)
         {
@@ -169,10 +188,13 @@ namespace AgroPack.Controllers
 
         }
 
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult ProductDelete(int productId)
         {
             return View(_UnitOfWork.GetRepositoryInstance<Produit>().GetFirstorDefault(productId));
         }
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         [HttpPost]
         public ActionResult ProductDelete(Produit produit)
         {
@@ -193,6 +215,8 @@ namespace AgroPack.Controllers
         }
 
         //Champs
+
+        [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult Champs()
         {
             return View();

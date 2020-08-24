@@ -40,33 +40,37 @@
             </li>
 
             <hr class="sidebar-divider my-0">
+            @if (User.IsInRole("Admin") || User.IsInRole("Agriculteur"))
+            {
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item @ViewBag.ActiveDashboard">
+                    <a class="nav-link" href="~/Compte/Dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Tableau de bord</span>
+                    </a>
+                </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item @ViewBag.ActiveDashboard">
-                <a class="nav-link" href="~/Compte/Dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Tableau de bord</span>
-                </a>
-            </li>
+                <li class="nav-item @ViewBag.ActiveCategorie">
+                    <a class="nav-link" href="~/Compte/Categories">
+                        <i class="fas fa-tags"></i>
+                        <span>Catégories</span>
+                    </a>
+                </li>
+                <li class="nav-item @ViewBag.ActiveProduit">
+                    <a class="nav-link" href="~/Compte/Product">
+                        <i class="fab fa-product-hunt"></i>
+                        <span>Produits</span>
+                    </a>
+                </li>
+                <li class="nav-item @ViewBag.ActiveChamps">
+                    <a class="nav-link" href="~/Compte/Champs">
+                        <i class="fas fa-tractor"></i>
+                        <span>Mes Champs</span>
+                    </a>
+                </li>
+            }
 
-            <li class="nav-item @ViewBag.ActiveCategorie">
-                <a class="nav-link" href="~/Compte/Categories">
-                    <i class="fas fa-tags"></i>
-                    <span>Catégories</span>
-                </a>
-            </li>
-            <li class="nav-item @ViewBag.ActiveProduit">
-                <a class="nav-link" href="~/Compte/Product">
-                    <i class="fab fa-product-hunt"></i>
-                    <span>Produits</span>
-                </a>
-            </li>
-            <li class="nav-item @ViewBag.ActiveChamps">
-                <a class="nav-link" href="~/Compte/Champs">
-                    <i class="fas fa-tractor"></i>
-                    <span>Mes Champs</span>
-                </a>
-            </li>
+            
             <li class="nav-item @ViewBag.ActiveCommande">
                 <a class="nav-link" href="~/Compte/Order">
                     <i class="fas fa-shopping-basket"></i>

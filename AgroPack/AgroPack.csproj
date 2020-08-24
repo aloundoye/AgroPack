@@ -187,6 +187,7 @@
     <Compile Include="Controllers\CompteController.cs" />
     <Compile Include="DetailsCmd.cs" />
     <Compile Include="Entreprise.cs" />
+    <Compile Include="Infrastucture\ApplicationRoleManager.cs" />
     <Compile Include="Migrations\202008211201247_InitialModel.cs" />
     <Compile Include="Migrations\202008211201247_InitialModel.designer.cs">
       <DependentUpon>202008211201247_InitialModel.cs</DependentUpon>

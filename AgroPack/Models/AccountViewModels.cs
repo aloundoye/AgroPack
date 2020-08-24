@@ -86,11 +86,11 @@ namespace AgroPack.Models
         public string ConfirmPassword { get; set; }
         [Display(Name = "Téléphone mobile")]
         public string PhoneNumber { get; set; }
-        /*
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [Display(Name = "Type de compte")]
-        public string type { get; set; }*/
+        public string RoleName { get; set; }
 
 
     }

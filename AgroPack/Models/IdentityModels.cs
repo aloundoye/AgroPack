@@ -54,11 +54,9 @@ namespace AgroPack.Models
         }
     }
 
-    public class Role : IdentityRole
+    public enum TypeCompte
     {
-        public Role(): base(){}
-        public Role(string name) : base(name) {}
-        public string Description { get; set; }
+        Client, Agriculteur
     }
 
     public class AgroPackDbContext : IdentityDbContext<User>
