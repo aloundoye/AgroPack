@@ -165,7 +165,21 @@ namespace AgroPack.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     IdentityResult roleResult = await this.UserManager.AddToRoleAsync(user.Id, model.RoleName);
-
+                    using (var db = new AgroPackDbContext())
+                    {
+                        
+                            if (model.RoleName == "Client")
+                            {
+                                Client client = new Client { ClientId = user.Id};
+                                db.Clients.Add(client);
+                            }
+                            else if (model.RoleName == "Agriculteur")
+                            {
+                                Agriculteur agriculteur = new Agriculteur { AgriculteurId = user.Id};
+                                db.Agriculteurs.Add(agriculteur);
+                            }
+                            await db.SaveChangesAsync();
+                    }
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
