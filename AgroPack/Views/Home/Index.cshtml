@@ -12,9 +12,12 @@
 
                 @*<h1 class="my-4">AgroPack</h1>*@
                 <div class="list-group mt-4">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                    @foreach (var categorie in Model.ListCategories)
+                    {
+                        <a href="#" class="list-group-item">@categorie.Name</a>
+
+                    }
+
                 </div>
 
             </div>

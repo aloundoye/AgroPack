@@ -14,7 +14,7 @@ namespace AgroPack.Controllers
         AgroPackDbContext context = new AgroPackDbContext();
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
 
-        public ActionResult Index( string search, int? page)
+        public ActionResult Index( string search, int? page, string Category = null)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
             return View(model.CreateModel(search, 12, page));

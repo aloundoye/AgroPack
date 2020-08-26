@@ -13,16 +13,20 @@ namespace AgroPack.Models.Home
         public GenericUnitOfWork _UnitOfWork = new GenericUnitOfWork();
         AgroPackDbContext context = new AgroPackDbContext();
         public IPagedList<Produit> ListOfProduits { get; set; }
+        public List<Categorie> ListCategories { get; set; }
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@search", search??(object)DBNull.Value), 
             };
-             IPagedList<Produit> data =  context.Database.SqlQuery<Produit>("GetBySearch @search", parameters).ToList().ToPagedList(page ?? 1, pageSize);
+             IPagedList<Produit> dataProduits =  context.Database.SqlQuery<Produit>("GetBySearch @search", parameters).ToList().ToPagedList(page ?? 1, pageSize);
+             List<Categorie> datCategories= _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecords().ToList();
             return new HomeIndexViewModel
             {
-                ListOfProduits = data
+                ListOfProduits = dataProduits,
+                ListCategories = datCategories
+
             };
         }
     }
