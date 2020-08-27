@@ -64,9 +64,10 @@ namespace AgroPack.Models
 
     public class RegisterViewModel
     {
+        [Required]
         [Display(Name = "Prénom")]
         public string FirstName { get; set; }
-
+        [Required]
         [Display(Name = "Nom")]
         public string LastName { get; set; }
         [Required]
@@ -84,6 +85,7 @@ namespace AgroPack.Models
         [Display(Name = "Confirmez votre mot de passe")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
         [Display(Name = "Téléphone mobile")]
         public string PhoneNumber { get; set; }
 

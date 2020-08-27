@@ -6,104 +6,67 @@
 
 <h2>@ViewBag.Title.</h2>
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Créer un nouveau compte.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group row">
-            <div class="col-md-offset-2 col-md-10 text-success">
-                @ViewBag.SuccessMsg
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-offset-2 col-md-10 text-danger">
-                @ViewBag.ErrMsg
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-            </div>
-        </div>
-        
-        <div class="form-group row">
-            @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 control-label" })
-
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.RoleName, new SelectList(Enum.GetValues(typeof(TypeCompte))), "Type de compte", new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-offset-2 col-md-10 ml-auto mt-2">
-                <input type="submit" class="btn btn-primary" value="CREER VOTRE COMPTE" />
-            </div>
-        </div>
-
-    }
-
-@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
 {
+<div class="container-fluid">
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Créer un nouveau compte.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    <div class="form-group row">
+        <div class="col-md-offset-2 col-md-10 text-success">
+            @ViewBag.SuccessMsg
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    <div class="form-group row">
+        <div class="col-md-offset-2 col-md-10 text-danger">
+            @ViewBag.ErrMsg
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+    <div class="row mb-3">
+        <div class="col">
+            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "Prénom", @class = "form-control ml-5" })
+        </div>
+
+        <div class=" col">
+
+            @Html.TextBoxFor(m => m.LastName, new { placeholder = "Nom", @class = "form-control ml-0" })
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+    <div class="row mb-3">
+        <div class="col ">
+            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control ml-5" })
+        </div>
+
+        <div class="col ">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { placeholder = "Téléphone mobile", @class = "form-control ml-0" })
         </div>
     </div>
-}*@
+
+    <div class=" row mb-3">
+            <div class="col">
+                @Html.PasswordFor(m => m.Password, new {placeholder="Mot de passe", @class = "form-control ml-5 mr-0" })
+            </div>
+        <div class="col">
+                @Html.PasswordFor(m => m.ConfirmPassword, new {placeholder = "Confirmez votre mot de passe", @class = "form-control ml-md-0 mr-5" })
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            @Html.DropDownListFor(m => m.RoleName, new SelectList(Enum.GetValues(typeof(TypeCompte))), "Type de compte", new { @class = "form-control ml-5" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="offset-md-2 col-md-10 ml-auto mt-5">
+            <input type="submit" class="btn btn-primary" value="CREER VOTRE COMPTE" />
+        </div>
+    </div>
+</div>
+
+}
+
 
 
 @section Scripts {

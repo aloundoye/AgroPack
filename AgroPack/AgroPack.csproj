@@ -184,48 +184,24 @@
     <Compile Include="Client.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CompteController.cs" />
     <Compile Include="DetailsCmd.cs" />
     <Compile Include="Entreprise.cs" />
     <Compile Include="Infrastucture\ApplicationRoleManager.cs" />
-    <Compile Include="Migrations\202008211201247_InitialModel.cs" />
-    <Compile Include="Migrations\202008211201247_InitialModel.designer.cs">
-      <DependentUpon>202008211201247_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008211218423_Mapping.cs" />
-    <Compile Include="Migrations\202008211218423_Mapping.designer.cs">
-      <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008211237163_OtherFieldUser.cs" />
-    <Compile Include="Migrations\202008211237163_OtherFieldUser.designer.cs">
-      <DependentUpon>202008211237163_OtherFieldUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008211645356_test.cs" />
-    <Compile Include="Migrations\202008211645356_test.designer.cs">
-      <DependentUpon>202008211645356_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008232354524_AddingCityFielUser.cs" />
-    <Compile Include="Migrations\202008232354524_AddingCityFielUser.designer.cs">
-      <DependentUpon>202008232354524_AddingCityFielUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008241217451_AddQuantityToPanier.cs" />
-    <Compile Include="Migrations\202008241217451_AddQuantityToPanier.designer.cs">
-      <DependentUpon>202008241217451_AddQuantityToPanier.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008270047267_fixIdCommande.cs" />
-    <Compile Include="Migrations\202008270047267_fixIdCommande.designer.cs">
-      <DependentUpon>202008270047267_fixIdCommande.cs</DependentUpon>
+    <Compile Include="Migrations\202008271700110_InitialMigration.cs" />
+    <Compile Include="Migrations\202008271700110_InitialMigration.designer.cs">
+      <DependentUpon>202008271700110_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Checkout\CheckoutViewModel.cs" />
     <Compile Include="Models\Home\Item.cs" />
-    <Compile Include="Models\Detailcategorie.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DetailCommande.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -2145,6 +2121,8 @@
     <Content Include="Views\Compte\Index.cshtml" />
     <Content Include="Views\Compte\CategoryDelete.cshtml" />
     <Content Include="Views\Compte\ProductDelete.cshtml" />
+    <Content Include="Views\Checkout\VerifyAddress.cshtml" />
+    <Content Include="Views\Checkout\Delivery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2157,26 +2135,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008211201247_InitialModel.resx">
-      <DependentUpon>202008211201247_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008211218423_Mapping.resx">
-      <DependentUpon>202008211218423_Mapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008211237163_OtherFieldUser.resx">
-      <DependentUpon>202008211237163_OtherFieldUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008211645356_test.resx">
-      <DependentUpon>202008211645356_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008232354524_AddingCityFielUser.resx">
-      <DependentUpon>202008232354524_AddingCityFielUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008241217451_AddQuantityToPanier.resx">
-      <DependentUpon>202008241217451_AddQuantityToPanier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008270047267_fixIdCommande.resx">
-      <DependentUpon>202008270047267_fixIdCommande.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008271700110_InitialMigration.resx">
+      <DependentUpon>202008271700110_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

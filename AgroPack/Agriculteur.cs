@@ -1,5 +1,3 @@
-using AgroPack.Models;
-
 namespace AgroPack
 {
     using System;
@@ -14,7 +12,6 @@ namespace AgroPack
         public Agriculteur()
         {
             Champs = new HashSet<Champ>();
-            Commandes = new HashSet<Commande>();
             Produits = new HashSet<Produit>();
             Produits1 = new HashSet<Produit>();
         }
@@ -25,13 +22,8 @@ namespace AgroPack
 
         public virtual Entreprise Entreprise { get; set; }
 
-        public virtual User User { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Champ> Champs { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Commande> Commandes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }

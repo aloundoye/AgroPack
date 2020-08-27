@@ -10,7 +10,7 @@ using AgroPack.Models;
 
 namespace AgroPack.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -215,6 +215,7 @@ namespace AgroPack.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        [AllowAnonymous]
         public ActionResult ChangePassword()
         {
             return View();
@@ -223,6 +224,7 @@ namespace AgroPack.Controllers
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -238,7 +240,7 @@ namespace AgroPack.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("Index","Compte", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
             return View(model);

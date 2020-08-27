@@ -7,13 +7,13 @@ namespace AgroPack.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddingCityFielUser : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingCityFielUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008232354524_AddingCityFielUser"; }
+            get { return "202008271700110_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

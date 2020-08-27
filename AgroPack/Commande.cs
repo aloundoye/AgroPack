@@ -20,10 +20,6 @@ namespace AgroPack
         [StringLength(128)]
         public string ClientId { get; set; }
 
-        [Required]
-        [StringLength(128)]
-        public string AgriculteurId { get; set; }
-
         [Column(TypeName = "text")]
         public string libelle { get; set; }
 
@@ -34,8 +30,6 @@ namespace AgroPack
 
         [StringLength(50)]
         public string statut { get; set; }
-
-        public virtual Agriculteur Agriculteur { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsCmd> DetailsCmds { get; set; }

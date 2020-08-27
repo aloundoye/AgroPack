@@ -26,6 +26,7 @@ namespace AgroPack.Controllers
             }
             return list;
         }
+        [Authorize(Roles = "Admin, Agriculteur")]
         public List<SelectListItem> GetChamps()
         {
             List<SelectListItem> list = new List<SelectListItem>();

@@ -41,7 +41,7 @@ namespace AgroPack.Models
                     string.IsNullOrWhiteSpace(this.City) ? "" : this.City;
 
                 return string
-                    .Format("{0} {1} {2} {3}", dspAddress, dspCity);
+                    .Format("{0}, {1}", dspAddress, dspCity);
             }
         }
 
@@ -93,10 +93,6 @@ namespace AgroPack.Models
                 p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles").Property(p =>
                 p.Id).HasColumnName("RoleId");
-            modelBuilder.Entity<Agriculteur>()
-                .HasMany(e => e.Commandes)
-                .WithRequired(e => e.Agriculteur)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Agriculteur>()
                 .HasMany(e => e.Produits)

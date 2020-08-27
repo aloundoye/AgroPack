@@ -1,5 +1,3 @@
-using AgroPack.Models;
-
 namespace AgroPack
 {
     using System;
@@ -11,7 +9,5 @@ namespace AgroPack
     public partial class Client
     {
         public string ClientId { get; set; }
-
-        public virtual User User { get; set; }
     }
 }
