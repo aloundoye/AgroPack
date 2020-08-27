@@ -15,7 +15,7 @@
                     @foreach (var categorie in Model.ListCategories)
                     {
                        
-                        @Html.ActionLink(categorie.Name,"Index", new { Category = categorie.Name}, new {@class="list-group-item"})
+                        @Html.ActionLink(categorie.Name,"Index", new { Category = categorie.Name}, new {@class=Request["Category"]==categorie.Name?"list-group-item active":"list-group-item"})
                     }
 
                 </div>

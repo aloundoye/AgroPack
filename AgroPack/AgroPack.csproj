@@ -184,6 +184,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompteController.cs" />
     <Compile Include="DetailsCmd.cs" />
     <Compile Include="Entreprise.cs" />
     <Compile Include="Infrastucture\ApplicationRoleManager.cs" />
@@ -210,6 +211,10 @@
     <Compile Include="Migrations\202008241217451_AddQuantityToPanier.cs" />
     <Compile Include="Migrations\202008241217451_AddQuantityToPanier.designer.cs">
       <DependentUpon>202008241217451_AddQuantityToPanier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008270047267_fixIdCommande.cs" />
+    <Compile Include="Migrations\202008270047267_fixIdCommande.designer.cs">
+      <DependentUpon>202008270047267_fixIdCommande.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Home\Item.cs" />
@@ -2169,6 +2174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008241217451_AddQuantityToPanier.resx">
       <DependentUpon>202008241217451_AddQuantityToPanier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008270047267_fixIdCommande.resx">
+      <DependentUpon>202008270047267_fixIdCommande.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
