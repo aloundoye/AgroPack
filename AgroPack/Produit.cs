@@ -11,7 +11,7 @@ namespace AgroPack
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produit()
         {
-            Commandes = new HashSet<Commande>();
+            DetailsCmds = new HashSet<DetailsCmd>();
             Paniers = new HashSet<Panier>();
         }
 
@@ -42,12 +42,18 @@ namespace AgroPack
 
         public virtual Agriculteur Agriculteur { get; set; }
 
+        public virtual Agriculteur Agriculteur1 { get; set; }
+
         public virtual Categorie Categorie { get; set; }
+
+        public virtual Categorie Categorie1 { get; set; }
 
         public virtual Champ Champ { get; set; }
 
+        public virtual Champ Champ1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Commande> Commandes { get; set; }
+        public virtual ICollection<DetailsCmd> DetailsCmds { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Panier> Paniers { get; set; }

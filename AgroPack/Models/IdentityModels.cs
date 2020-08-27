@@ -93,9 +93,34 @@ namespace AgroPack.Models
                 p.Id).HasColumnName("UserClaimId");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles").Property(p =>
                 p.Id).HasColumnName("RoleId");
+            modelBuilder.Entity<Agriculteur>()
+                .HasMany(e => e.Commandes)
+                .WithRequired(e => e.Agriculteur)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Agriculteur>()
+                .HasMany(e => e.Produits)
+                .WithOptional(e => e.Agriculteur)
+                .HasForeignKey(e => e.AgriculteurId);
+
+            modelBuilder.Entity<Agriculteur>()
+                .HasMany(e => e.Produits1)
+                .WithOptional(e => e.Agriculteur1)
+                .HasForeignKey(e => e.AgriculteurId);
+
             modelBuilder.Entity<Categorie>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Categorie>()
+                .HasMany(e => e.Produits)
+                .WithOptional(e => e.Categorie)
+                .HasForeignKey(e => e.categorieId);
+
+            modelBuilder.Entity<Categorie>()
+                .HasMany(e => e.Produits1)
+                .WithOptional(e => e.Categorie1)
+                .HasForeignKey(e => e.categorieId);
 
             modelBuilder.Entity<Champ>()
                 .Property(e => e.Nom)
@@ -104,6 +129,11 @@ namespace AgroPack.Models
             modelBuilder.Entity<Champ>()
                 .HasMany(e => e.Produits)
                 .WithOptional(e => e.Champ)
+                .HasForeignKey(e => e.idChamps);
+
+            modelBuilder.Entity<Champ>()
+                .HasMany(e => e.Produits1)
+                .WithOptional(e => e.Champ1)
                 .HasForeignKey(e => e.idChamps);
 
             modelBuilder.Entity<Commande>()
@@ -167,11 +197,6 @@ namespace AgroPack.Models
             modelBuilder.Entity<Produit>()
                 .Property(e => e.Image)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Produit>()
-                .HasMany(e => e.Commandes)
-                .WithRequired(e => e.Produit)
-                .HasForeignKey(e => e.AgriculteurId);
 
             modelBuilder.Entity<Produit>()
                 .HasMany(e => e.Paniers)

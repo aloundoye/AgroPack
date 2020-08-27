@@ -21,11 +21,11 @@ namespace AgroPack.Models.Home
                 new SqlParameter("@search", search??(object)DBNull.Value), 
             };
              IPagedList<Produit> dataProduits =  context.Database.SqlQuery<Produit>("GetBySearch @search", parameters).ToList().ToPagedList(page ?? 1, pageSize);
-             List<Categorie> datCategories= _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecords().ToList();
+             List<Categorie> dataCategories= _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecords().ToList();
             return new HomeIndexViewModel
             {
                 ListOfProduits = dataProduits,
-                ListCategories = datCategories
+                ListCategories = dataCategories
 
             };
         }

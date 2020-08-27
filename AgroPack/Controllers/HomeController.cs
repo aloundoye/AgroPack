@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AgroPack.Models;
 using AgroPack.Models.Home;
 using AgroPack.Repository;
+using PagedList;
 
 namespace AgroPack.Controllers
 {
@@ -16,8 +17,25 @@ namespace AgroPack.Controllers
 
         public ActionResult Index( string search, int? page, string Category = null)
         {
-            HomeIndexViewModel model = new HomeIndexViewModel();
-            return View(model.CreateModel(search, 12, page));
+            if (Category == null)
+            {
+                HomeIndexViewModel model = new HomeIndexViewModel();
+                return View(model.CreateModel(search, 12, page));
+            }
+            else
+            {
+                List<Categorie> dataCategories = _UnitOfWork.GetRepositoryInstance<Categorie>().GetAllRecords().ToList();
+                Categorie categorie = context.Categories.SingleOrDefault(c => c.Name == Category);
+                IPagedList<Produit> dataProduits = context.Produits.Where(p => p.categorieId == categorie.Id).ToList().ToPagedList(page ?? 1, 12); ;
+                HomeIndexViewModel model = new HomeIndexViewModel()
+                {
+                    ListCategories = dataCategories,
+                    ListOfProduits = dataProduits
+                };
+
+
+                return View(model);
+            }
         }
 
         public ActionResult CheckoutDetails()

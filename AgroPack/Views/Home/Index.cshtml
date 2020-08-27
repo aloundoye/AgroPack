@@ -14,8 +14,8 @@
                 <div class="list-group mt-4">
                     @foreach (var categorie in Model.ListCategories)
                     {
-                        <a href="#" class="list-group-item">@categorie.Name</a>
-
+                       
+                        @Html.ActionLink(categorie.Name,"Index", new { Category = categorie.Name}, new {@class="list-group-item"})
                     }
 
                 </div>

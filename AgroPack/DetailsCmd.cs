@@ -26,6 +26,10 @@ namespace AgroPack
         [StringLength(50)]
         public string TypePaiement { get; set; }
 
+        public int? ProduitId { get; set; }
+
         public virtual Commande Commande { get; set; }
+
+        public virtual Produit Produit { get; set; }
     }
 }

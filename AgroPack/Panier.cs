@@ -18,7 +18,7 @@ namespace AgroPack
 
         [StringLength(50)]
         public string Statut { get; set; }
-        
+
         public int Quantity { get; set; }
 
         public virtual Produit Produit { get; set; }
