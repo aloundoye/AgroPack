@@ -13,7 +13,6 @@ namespace AgroPack
         public Categorie()
         {
             Produits = new HashSet<Produit>();
-            Produits1 = new HashSet<Produit>();
         }
 
         public int Id { get; set; }
@@ -24,7 +23,6 @@ namespace AgroPack
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produit> Produits { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Produit> Produits1 { get; set; }
+       
     }
 }

@@ -1,8 +1,86 @@
-﻿
+﻿@using AgroPack.Models
+@using AgroPack.Models.Home
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Delivery";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    AgroPackDbContext db = new AgroPackDbContext();
+    User user = db.Users.Find(User.Identity.GetUserId());
 
-<h2>Delivery</h2>
+    var nbCart = 0;
+    if (Session["cart"] != null)
+    {
+        nbCart = ((List<Item>)Session["cart"]).Count;
 
+    }
+
+}
+<div class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-8">
+            <div class="card shadow mb-2">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header bg-white py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-check-circle text-success"></i> 1. ADRESSE</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <h6 class="m-0 font-weight-bold text-dark">@user.FirstName @user.LastName</h6>
+                    <div>
+                        <div>@user.DisplayAddress</div>
+                        <div>@user.PhoneNumber</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mb-2">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header bg-white py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-dark"><i class="fas fa-check-circle text-gray-500"></i> 2. Mode de livraison</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h6 class="m-0 font-weight-bold text-dark">Comment voulez-vous que votre commande soit livrée ?
+                            </h6>
+                            <div>
+                                <div>@user.DisplayAddress</div>
+                                <div>@user.PhoneNumber</div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+
+        <div class=" col-md-3">
+            <div class="card shadow mb-2">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header bg-white py-3 d-flex flex-row align-items-center justify-content-between">
+                    @{
+                        if (nbCart > 1)
+                        {
+                            <h6 class="m-0 text-dark">Votre commande (@nbCart articles)</h6>
+
+                        }
+                        else
+                        {
+                            <h6 class="m-0 text-dark">Votre commande (@nbCart article)</h6>
+
+                        }
+                    }
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <h6 class="m-0 font-weight-bold text-dark">Comment voulez-vous que votre commande soit livrée ?
+                    </h6>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>

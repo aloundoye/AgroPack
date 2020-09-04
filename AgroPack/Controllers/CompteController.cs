@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AgroPack.Models;
 using AgroPack.Repository;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 
 namespace AgroPack.Controllers
@@ -48,11 +49,6 @@ namespace AgroPack.Controllers
             return View();
         }
 
-        public ActionResult Dashboard()
-        {
-            return View();
-        }
-
         //Catégorie
         [Authorize(Roles = "Admin, Agriculteur")]
         public ActionResult Categories()
@@ -87,7 +83,7 @@ namespace AgroPack.Controllers
         [HttpPost]
         public ActionResult CategoryAdd(Categorie categorie)
         {
-
+            
             
 
             _UnitOfWork.GetRepositoryInstance<Categorie>().Add(categorie);
@@ -184,6 +180,7 @@ namespace AgroPack.Controllers
             }
             produit.Image = pic;
             produit.CreatedDate = DateTime.Now;
+            produit.AgriculteurId = User.Identity.GetUserId();
             _UnitOfWork.GetRepositoryInstance<Produit>().Add(produit);
             return RedirectToAction("Product");
 

@@ -193,6 +193,10 @@
     <Compile Include="Migrations\202008271700110_InitialMigration.designer.cs">
       <DependentUpon>202008271700110_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008281522215_InitialMigration1.cs" />
+    <Compile Include="Migrations\202008281522215_InitialMigration1.designer.cs">
+      <DependentUpon>202008281522215_InitialMigration1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Checkout\CheckoutViewModel.cs" />
     <Compile Include="Models\Home\Item.cs" />
@@ -2105,7 +2109,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Compte\Dashboard.cshtml" />
     <Content Include="Views\Compte\Categories.cshtml" />
     <Content Include="Views\Compte\Champs.cshtml" />
     <Content Include="Views\Compte\Order.cshtml" />
@@ -2137,6 +2140,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008271700110_InitialMigration.resx">
       <DependentUpon>202008271700110_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008281522215_InitialMigration1.resx">
+      <DependentUpon>202008281522215_InitialMigration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
